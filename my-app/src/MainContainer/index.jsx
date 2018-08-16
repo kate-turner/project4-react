@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import Posts from './Posts';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import CreatePost from './CreatePost';
 =======
+=======
+
+import CreatePost from './CreatePost';
+
+>>>>>>> 9f7b3e019603c675d78d265da1c9241db4853341
 import {
 	Collapse,
 	Navbar,
@@ -15,7 +21,11 @@ import {
 	DropdownToggle,
 	DropdownMenu,
 	DropdownItem } from 'reactstrap';
+<<<<<<< HEAD
 >>>>>>> 02b5758de9d99841fde38ac98faafd5074280442
+=======
+
+>>>>>>> 9f7b3e019603c675d78d265da1c9241db4853341
 
 class MainContainer extends Component {
 	constructor(){
@@ -37,6 +47,7 @@ class MainContainer extends Component {
 
 	render(){
 		return (
+<<<<<<< HEAD
 			<div>
 <<<<<<< HEAD
 				<Posts posts={this.state.posts} />
@@ -45,6 +56,9 @@ class MainContainer extends Component {
 		)
 	}
 =======
+=======
+	
+>>>>>>> 9f7b3e019603c675d78d265da1c9241db4853341
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">USER STORIES</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
@@ -74,13 +88,17 @@ class MainContainer extends Component {
             </Nav>
           </Collapse>
         </Navbar>
-      
+    <div> 
 		<Posts posts={this.state.posts} />
+    <CreatePost addPost={this.state.posts} />
 	  
 	  </div>
     );
   }
+<<<<<<< HEAD
 >>>>>>> 02b5758de9d99841fde38ac98faafd5074280442
+=======
+>>>>>>> 9f7b3e019603c675d78d265da1c9241db4853341
 }
 
 
