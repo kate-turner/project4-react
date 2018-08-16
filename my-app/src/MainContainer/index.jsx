@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Posts from './Posts';
+
+import CreatePost from './CreatePost';
+
 import {
 	Collapse,
 	Navbar,
@@ -12,6 +15,7 @@ import {
 	DropdownToggle,
 	DropdownMenu,
 	DropdownItem } from 'reactstrap';
+
 
 class MainContainer extends Component {
 	constructor(){
@@ -33,7 +37,7 @@ class MainContainer extends Component {
 
 	render(){
 		return (
-			<div>
+	
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">USER STORIES</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
@@ -63,8 +67,9 @@ class MainContainer extends Component {
             </Nav>
           </Collapse>
         </Navbar>
-      
+    <div> 
 		<Posts posts={this.state.posts} />
+    <CreatePost addPost={this.state.posts} />
 	  
 	  </div>
     );
