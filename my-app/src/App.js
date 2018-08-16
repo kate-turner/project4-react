@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MainContainer from './MainContainer';
 import Posts from './MainContainer/Posts';
-// import CreatePost from './CreatePost';
+import CreatePost from './MainContainer/CreatePost';
 import { Route, Switch } from 'react-router-dom';
 
 
@@ -19,6 +19,8 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={ MainContainer } />
         <Route exact path="/posts" component={ Posts } />
+        <Route exact path="/new" component={ CreatePost} />
+
         <Route component={My404} />
       </Switch>
     </main>
