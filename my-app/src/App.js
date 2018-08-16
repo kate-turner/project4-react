@@ -3,6 +3,7 @@ import MainContainer from './MainContainer';
 import Posts from './MainContainer/Posts';
 import CreatePost from './MainContainer/CreatePost';
 import { Route, Switch } from 'react-router-dom';
+//import { Button } from 'reactstrap';
 
 
 const My404 = () => {
