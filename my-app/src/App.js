@@ -1,16 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-// import { Button } from 'reactstrap';
+import MainContainer from './MainContainer';
+import Posts from './MainContainer/Posts';
+// import CreatePost from './CreatePost';
+import { Route, Switch } from 'react-router-dom';
+//import { Button } from 'reactstrap';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-       <h1>Project 4 - blog</h1>
-      </div>
-    );
-  }
-}
+
+const My404 = () => {
+  return (
+    <div>
+      You're Lost
+    </div>
+    )
+};
+
+const App = () => {
+  return (
+    <main>
+      <Switch>
+        <Route exact path="/" component={ MainContainer } />
+        <Route exact path="/posts" component={ Posts } />
+        <Route component={My404} />
+      </Switch>
+    </main>
+    )
+};
+
+
 
 export default App;
