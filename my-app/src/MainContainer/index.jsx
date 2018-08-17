@@ -147,10 +147,9 @@ class MainContainer extends Component {
         
   <Navigation />
 
-
-    
 		<Posts posts={this.state.posts} />
-    	<CreatePost addPost={this.state.posts} />
+    <CreatePost addPost={this.addPost} />
+
 	  
 
 

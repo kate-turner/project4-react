@@ -9,7 +9,7 @@ class CreatePost extends Component {
       date: '',
       title: '',
       body: '',
-	    img_url: ''
+      img_url: ''
     }
   }
   updatePost = (e) => {
@@ -43,5 +43,6 @@ class CreatePost extends Component {
 
     )
   }
+}
 
 export default CreatePost;
