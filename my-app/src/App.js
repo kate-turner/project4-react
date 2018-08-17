@@ -26,6 +26,7 @@ const App = () => {
         <Route exact path="/posts" component={ Posts } />
         <Route exact path="/new" component={ CreatePost} />
 
+
         <Route component={My404} />
       </Switch>
     </main>

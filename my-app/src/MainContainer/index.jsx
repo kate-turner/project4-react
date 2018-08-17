@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Posts from './Posts';
 import Aux from '../hoc/Aux';
 import CreatePost from './CreatePost';
+import { Route, Switch, Link } from 'react-router-dom';
 
 import {
 	Collapse,
@@ -174,7 +175,11 @@ class MainContainer extends Component {
         </Navbar>
 
 		<Posts posts={this.state.posts} />
-    <CreatePost addPost={this.state.posts} />
+    <Link to="/new">Create Post</Link>
+    
+
+
+    <CreatePost addPost={this.addPost} />
 	  
 
 
