@@ -22,7 +22,7 @@ class MainContainer extends Component {
 		super();
 
 		this.state = {
-			posts: ['hello','hi'],
+			posts: [],
 			editPostId: null,
 			postToEdit: {
 				date: '',
