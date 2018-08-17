@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MainContainer from './MainContainer';
 import Posts from './MainContainer/Posts';
 // import CreatePost from './CreatePost';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 //import { Button } from 'reactstrap';
 
 
