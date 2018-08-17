@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import Aux from '../hoc/Aux';
 
 import {
-	Collapse,
-	Navbar,
-	NavbarToggler,
-	NavbarBrand,
-	Nav,
-	NavItem,
-	NavLink,
-	UncontrolledDropdown,
-	DropdownToggle,
-	DropdownMenu,
-	DropdownItem } from 'reactstrap';
-	
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem } from 'reactstrap';
+    
 
 
  export default class Navigation extends React.Component {
@@ -34,31 +34,17 @@ import {
     return (
       <Aux >
      <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">USER STORIES</NavbarBrand>
+          <NavbarBrand href="/">Whatever our blog is called</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">SOMTHING HERE</NavLink>
+                <NavLink href="/components/">Home</NavLink>
               </NavItem>
-              
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Options
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>
-                    Option 1
-                  </DropdownItem>
-                  <DropdownItem>
-                    Option 2
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
+              <NavItem>
+                <NavLink href="/components/">Create a Post</NavLink>
+              </NavItem>
+
             </Nav>
           </Collapse>
         </Navbar>
@@ -66,4 +52,4 @@ import {
 
     );
   }
-} 
+}  
