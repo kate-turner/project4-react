@@ -143,6 +143,7 @@ class MainContainer extends Component {
     console.log(this.state)
     return (
 	<Aux>
+
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">USER STORIES</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
@@ -174,7 +175,7 @@ class MainContainer extends Component {
         </Navbar>
 
 		<Posts posts={this.state.posts} />
-    <CreatePost addPost={this.state.posts} />
+    	<CreatePost addPost={this.state.posts} />
 	  
 
 
