@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Posts from './Posts';
 import Aux from '../hoc/Aux';
-import Navigation from '../Nav/Nav.jsx'
+import CreatePost from './CreatePost';
+
 import {
 	Collapse,
 	Navbar,
@@ -107,6 +108,7 @@ class MainContainer extends Component {
 
               if(post._id === this.state.editPostId){
 
+
                 post.date = editResponseJson.data.date;
                 post.title = editResponseJson.data.title;
                 post.body = editResponseJson.data.body;
@@ -171,10 +173,8 @@ class MainContainer extends Component {
           </Collapse>
         </Navbar>
 
-
-
-      
 		<Posts posts={this.state.posts} />
+    <CreatePost addPost={this.state.posts} />
 	  
 
 
