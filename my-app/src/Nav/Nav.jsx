@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Aux from '../hoc/Aux';
+
 import {
 	Collapse,
 	Navbar,
@@ -13,10 +15,25 @@ import {
 	DropdownItem } from 'reactstrap';
 	
 
-const Navigation = (props) => {
-	return(
 
-	   <Navbar color="light" light expand="md">
+ export default class Navigation extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+  toggle = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+  render() {
+    return (
+      <Aux >
+     <Navbar color="light" light expand="md">
           <NavbarBrand href="/">USER STORIES</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -45,8 +62,8 @@ const Navigation = (props) => {
             </Nav>
           </Collapse>
         </Navbar>
-    )
+      </Aux>
 
-}
-
-export default Navigation
+    );
+  }
+} 
