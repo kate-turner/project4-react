@@ -150,7 +150,7 @@ class MainContainer extends Component {
 
     
 		<Posts posts={this.state.posts} />
-    <CreatePost addPost={this.state.posts} />
+    <CreatePost addPost={this.addPost} />
 	  
 
 
