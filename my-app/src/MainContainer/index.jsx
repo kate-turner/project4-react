@@ -144,13 +144,12 @@ class MainContainer extends Component {
     console.log(this.state)
     return (
 	<Aux>
-
+        
   <Navigation />
 
-
-    
 		<Posts posts={this.state.posts} />
     <CreatePost addPost={this.addPost} />
+
 	  
 
 
