@@ -37,7 +37,7 @@ class MainContainer extends Component {
 
 	render(){
 		return (
-	
+		<div>
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">USER STORIES</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
@@ -67,9 +67,10 @@ class MainContainer extends Component {
             </Nav>
           </Collapse>
         </Navbar>
-    <div> 
+    
+    
 		<Posts posts={this.state.posts} />
-    <CreatePost addPost={this.state.posts} />
+    	<CreatePost addPost={this.state.posts} />
 	  
 	  </div>
     );
