@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import Aux from '../hoc/Aux';
 
 import {
-	Collapse,
-	Navbar,
-	NavbarToggler,
-	NavbarBrand,
-	Nav,
-	NavItem,
-	NavLink,
-	UncontrolledDropdown,
-	DropdownToggle,
-	DropdownMenu,
-	DropdownItem } from 'reactstrap';
-	
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem } from 'reactstrap';
+    
 
 
  export default class Navigation extends React.Component {
@@ -43,6 +43,7 @@ import {
               </NavItem>
               <NavItem>
                 <NavLink href="#">Create a Post</NavLink>
+
               </NavItem>
 
             </Nav>
@@ -52,4 +53,4 @@ import {
 
     );
   }
-} 
+}  

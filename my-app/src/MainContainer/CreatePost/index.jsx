@@ -18,7 +18,7 @@ class CreatePost extends Component {
 
   }
 
-  render(){
+render(){
     console.log(this.props, ' this is props')
   return (
    <Container>

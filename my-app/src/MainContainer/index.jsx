@@ -3,19 +3,9 @@ import Posts from './Posts';
 import Aux from '../hoc/Aux';
 import Navigation from '../Nav/Nav.jsx'
 import CreatePost from './CreatePost';
+import EditPost from './EditPost';
+import {Route, Switch, Link } from 'react-router-dom';
 
-import {
-	Collapse,
-	Navbar,
-	NavbarToggler,
-	NavbarBrand,
-	Nav,
-	NavItem,
-	NavLink,
-	UncontrolledDropdown,
-	DropdownToggle,
-	DropdownMenu,
-	DropdownItem } from 'reactstrap';
 
 class MainContainer extends Component {
 	constructor(){
@@ -42,7 +32,7 @@ class MainContainer extends Component {
 
  getPosts = async () => {
 
-    const posts = await fetch('http://localhost:9000/api/v1/posts');
+    const posts = await fetch('http://localhost:8000/api/posts');
     const postsJson = await posts.json();
     return postsJson
 
@@ -50,7 +40,7 @@ class MainContainer extends Component {
   addPost = async (post, e) => {
     e.preventDefault();
     try {
-        const createdPost = await fetch('http://localhost:9000/api/v1/posts', {
+        const createdPost = await fetch('http://localhost:8000/api/posts', {
           method: 'POST',
           body: JSON.stringify(post),
           headers:{
@@ -68,7 +58,7 @@ class MainContainer extends Component {
     console.log(id, ' this is id')
     e.preventDefault();
     try {
-        const deletePost = await fetch('http://localhost:9000/api/v1/posts/' + id, {
+        const deletePost = await fetch('http://localhost:8000/api/posts/' + id, {
           method: 'DELETE'
         });
         console.log('inside try')
@@ -95,7 +85,7 @@ class MainContainer extends Component {
     e.preventDefault();
 
     try {
-      const editResponse = await fetch('http://localhost:9000/api/v1/posts/' + this.state.editMovieId, {
+      const editResponse = await fetch('http://localhost:8000/api/posts/' + this.state.editMovieId, {
         method: 'PUT',
         body: JSON.stringify(this.state.postToEdit),
         headers:{
@@ -147,8 +137,28 @@ class MainContainer extends Component {
         
   <Navigation />
 
-		<Posts posts={this.state.posts} />
-    <CreatePost addPost={this.addPost} />
+    <Switch>
+        <Route exact path="/" render={(props) => (
+          <Posts posts={this.state.posts} deletePost={this.deletePost} showModal={this.showModal}/>
+           
+
+        )}/>
+
+        <Route exact path="/new" render={(props) => (
+          <CreatePost {...props} addPost={this.addPost} />
+          
+        )}/>
+
+       
+         
+      
+       
+        
+    </Switch>
+
+    <Link to="/new">Create Post</Link>
+    {this.state.showEdit ? <EditPost closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} postToEdit={this.state.postToEdit}/> : null}
+		   
 
 	  
 
