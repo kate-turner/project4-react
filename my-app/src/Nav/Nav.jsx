@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Aux from '../hoc/Aux';
-// import {Route, Switch, Link } from 'react-router-dom';
-
 
 import {
     Collapse,
@@ -35,17 +33,16 @@ import {
   render() {
     return (
       <Aux >
-     <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Whatever our blog is called</NavbarBrand>
+     <Navbar className="navbar-main" color="light" light toggleable>
+          <NavbarBrand className="navbarbrand" href="/">Whatever Blog</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/">Home</NavLink>
+                <NavLink className="navbarbrand" href="/">Home</NavLink>
               </NavItem>
               <NavItem>
-
-                <NavLink href="/new">Create a Post</NavLink>
+                <NavLink className="navbarbrand" href="/new">Create a Post</NavLink>
 
               </NavItem>
 

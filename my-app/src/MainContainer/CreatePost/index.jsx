@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Col, Container, Row, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Col, Container, Row, Button, Form, FormGroup, Label, Input, FormText, Jumbotron } from 'reactstrap';
 
 class CreatePost extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
 
@@ -14,50 +14,48 @@ class CreatePost extends Component {
     }
   }
   updatePost = (e) => {
-    this.setState({[e.currentTarget.name]: e.currentTarget.value});
+    this.setState({ [e.currentTarget.name]: e.currentTarget.value });
 
   }
 
-render(){
+  render() {
     console.log(this.props, ' this is props')
-  return (
-   <Container>
-    <form onSubmit={this.props.addPost.bind(this, this.state)}>
-    <FormGroup row>  
-      <label className="date-label">Post Date:</label>
-      <Col sm={{ size: 10 }}>  
-        <input type="text" date="date" onChange={this.updatePost}/>
-      </Col>
-    </FormGroup>
-    
-    <FormGroup row>
-      <label className="title-label">Title:</label>
-      <Col sm={{ size: 10 }}> 
-        <input type="text" title="title" onChange={this.updatePost}/>
-      </Col>
-    </FormGroup>
+    return (
+      <Jumbotron className="jumbotron">
+        <h1 className="h1-jumbo">Create a New Blog Post!</h1>
 
-    <FormGroup row>  
-      <label className="body-label">Body:</label>
-      <Col sm={{ size: 10 }}>   
-        <textarea type="textarea" name="name" body="body" onChange={this.updatePost}/>
-      </Col>
-    </FormGroup>  
-    
-    <FormGroup row>   
-       <label>Image URL:</label>
-       <Col sm={{ size: 10 }}>   
-        <input type="text" imgUrl="imgUrl" onChange={this.updatePost}/>
-      </Col>
-    </FormGroup>  
-    
-    <FormGroup row>
-    <Col sm={{ size: 10, offset: 2 }}>   
-      <input className="submit-button" type='Submit'/>
-    </Col>
-    </FormGroup>
-    </form>
-    </Container>
+        <hr className="my-2" />
+
+        <Container className="container-jumbo">
+          <form onSubmit={this.props.addPost.bind(this, this.state)}>
+            <FormGroup>
+              <label className="date-label">Date:</label>
+              <input className="form-control" type="text" date="date" onChange={this.updatePost} />
+            </FormGroup>
+
+            <FormGroup>
+              <label className="title-label">Title:</label>
+              <input className="form-control" type="text" title="title" onChange={this.updatePost} />
+            </FormGroup>
+
+            <FormGroup>
+              <label className="body-label">Write post below:</label>
+              <textarea className="form-control" rows="10" type="textarea" name="name" body="body" onChange={this.updatePost} />
+            </FormGroup>
+
+            <FormGroup>
+              <label className="image-url-label">Paste image URL below:</label>
+              <input className="form-control" imgUrl="imgUrl" onChange={this.updatePost} />
+            </FormGroup>
+
+            <hr className="my-2" />
+
+            <FormGroup>
+              <input className="submit-button" type='Submit' />
+            </FormGroup>
+          </form>
+        </Container>
+      </Jumbotron>
     )
   }
 }
