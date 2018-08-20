@@ -13,6 +13,7 @@ import {
 import '../App.css'
 import Carousel from '../Carousel/Carousel';
 
+
 class MainContainer extends Component {
   constructor() {
     super();
@@ -31,6 +32,7 @@ class MainContainer extends Component {
   }
   componentDidMount() {
     this.getPosts().then((posts) => {
+
       this.setState({posts: posts})
     }).catch((err) => {
       console.log(err);
@@ -100,6 +102,7 @@ class MainContainer extends Component {
     e.preventDefault();
 
     try {
+
       const editResponse = await fetch('http://localhost:8000/api/posts/' + this.state.editPostId + '/', {
         method: 'PUT',
         body: JSON.stringify(this.state.postToEdit),
@@ -172,69 +175,10 @@ class MainContainer extends Component {
         <h1 className="main-title"> Whatever Blog</h1>
 
         <Carousel />
-
-        <Container className="container">
-          <Row>
-            <Col>
-              <Card>
-                <CardImg top width="auto" src="https://i.imgur.com/1cNAbX6.jpg" alt="" />
-                <CardBody>
-                  <CardTitle>
-                    <h3 className="blog-title"><a href="this.post.title">The best shrimp EVER!</a></h3>
-                  </CardTitle>
-                  <CardSubtitle>
-                    <div key="this.post._id">
-                      <a href="#">July 4, 2018</a>
-                    </div>
-                  </CardSubtitle>
-                  <CardText className="blog-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer feugiat nisl id odio commodo aliquet. Maecenas lobortis, tellus sit amet ullamcorper tristique, risus libero aliquet velit, nec mollis purus purus eu velit. Suspendisse lacinia rutrum diam, nec viverra felis accumsan eu. Sed lacinia sagittis metus vitae malesuada. Maecenas mattis lacus elit. Vestibulum a fermentum metus, sit amet tincidunt metus. Donec sagittis sapien sit amet velit euismod eleifend. Sed ornare ante eros, eget facilisis nibh faucibus at. Nam ut augue vitae velit posuere scelerisque. Sed eleifend odio ac elementum gravida. Sed nisl risus, ullamcorper ut lacus quis, scelerisque iaculis sem. Donec ut quam interdum, viverra nunc vitae, elementum massa. Phasellus in lobortis nisl.
-                  </CardText>
-
-                </CardBody>
-              </Card>
-            </Col>
-            <Col>
-              <Card>
-                <CardImg top width="20%" src="https://i.imgur.com/P2tMdYj.jpg" alt="" />
-                <CardBody>
-                  <CardTitle>
-                    <h3 className="blog-title"><a href="this.post.title">Only good in public!</a></h3>
-                  </CardTitle>
-                  <CardSubtitle>
-                    <div key="this.post._id">
-                      <a href="#">August 3, 2018</a>
-                    </div>
-                  </CardSubtitle>
-                  <CardText className="blog-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer feugiat nisl id odio commodo aliquet. Maecenas lobortis, tellus sit amet ullamcorper tristique, risus libero aliquet velit, nec mollis purus purus eu velit. Suspendisse lacinia rutrum diam, nec viverra felis accumsan eu. Sed lacinia sagittis metus vitae malesuada. Maecenas mattis lacus elit. Vestibulum a fermentum metus, sit amet tincidunt metus. Donec sagittis sapien sit amet velit euismod eleifend. Sed ornare ante eros, eget facilisis nibh faucibus at. Nam ut augue vitae velit posuere scelerisque. Sed eleifend odio ac elementum gravida. Sed nisl risus, ullamcorper ut lacus quis, scelerisque iaculis sem. Donec ut quam interdum, viverra nunc vitae, elementum massa. Phasellus in lobortis nisl.
-                  </CardText>
-
-                </CardBody>
-              </Card>
-            </Col>
-
-            <Col>
-              <Card>
-                <CardImg top width="20%" src="https://i.imgur.com/xTelMtI.jpg" alt="" />
-                <CardBody>
-                  <CardTitle>
-                    <h3 className="blog-title"><a href="this.post.title">I was so sacred!</a></h3>
-                  </CardTitle>
-                  <CardSubtitle>
-                    <div key="this.post._id">
-                      <a href="#">September 3, 2017</a>
-                    </div>
-                  </CardSubtitle>
-                  <CardText className="blog-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer feugiat nisl id odio commodo aliquet. Maecenas lobortis, tellus sit amet ullamcorper tristique, risus libero aliquet velit, nec mollis purus purus eu velit. Suspendisse lacinia rutrum diam, nec viverra felis accumsan eu. Sed lacinia sagittis metus vitae malesuada. Maecenas mattis lacus elit. Vestibulum a fermentum metus, sit amet tincidunt metus. Donec sagittis sapien sit amet velit euismod eleifend. Sed ornare ante eros, eget facilisis nibh faucibus at. Nam ut augue vitae velit posuere scelerisque. Sed eleifend odio ac elementum gravida. Sed nisl risus, ullamcorper ut lacus quis, scelerisque iaculis sem. Donec ut quam interdum, viverra nunc vitae, elementum massa. Phasellus in lobortis nisl.
-                  </CardText>
-
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
+        <CreatePost />
+          
+  
+       
       </Aux>
     );
   }
