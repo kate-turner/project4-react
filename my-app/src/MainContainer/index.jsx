@@ -18,7 +18,8 @@ class MainContainer extends Component {
     super();
 
     this.state = {
-      posts: ['hi'],
+      posts: [],
+      comments: [],
       showEdit: false,
       editPostId: null,
       postToEdit: {
@@ -26,17 +27,30 @@ class MainContainer extends Component {
         title: '',
         body: '',
         img_url: '',
-      }
+      },
+      showCommentEdit: false,
+      editCommentId: null,
+      commentToEdit: {
+        date: '',
+        body: '',
+      },
     }
   }
+
   componentDidMount() {
     this.getPosts().then((posts) => {
       this.setState({posts: posts})
     }).catch((err) => {
       console.log(err);
+    });
+    this.getComments().then((comments) => {
+      this.setState({ comments: comments})
+    }).catch((err) => {
+      console.log(err);
     })
   }
 
+  // ========================= Posts API Calls =========================
   getPosts = async () => {
 
     const posts = await fetch('http://localhost:8000/api/posts/');
@@ -139,12 +153,106 @@ class MainContainer extends Component {
   handleFormChange = (e) => {
 
     this.setState({
-      postToEdit: {
-        ...this.state.postToEdit,
-        [e.target.name]: e.target.value
-      }
+      postToEdit: {...this.state.postToEdit, [e.target.name]: e.target.value}
     })
   }
+
+  // ========================= Comments API Calls =========================
+
+  getComments = async () => {
+    const comments = await fetch('http://localhost:8000/api/comments/');
+    const commentsJson = await comments.json();
+    console.log(commentsJson, ' this is commentsJson');
+    console.log(comments, ' this is comments');
+    return commentsJson;
+  }
+
+  addComment = async (comment, e) => {
+    e.preventDefault();
+
+    try {
+      const createdComment = await fetch('http://localhost:8000/api/comments/', {
+        method: 'POST',
+        body: JSON.stringify(comment),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const createdCommentJson = await createdComment.json();
+      this.setState({ comments: [...this.state.comments, createdCommentJson] });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  deleteComment = async (id, e) => {
+    e.preventDefault();
+    console.log('deleteComment function is being called, this is the id: ', id);
+    try {
+      const deleteComment = await fetch('http://localhost:8000/api/commments/' + id, {
+        method: 'DELETE'
+      });
+      console.log(deleteComment, ' this is delete comment');
+
+      if (deleteComment.status === 204) {
+        this.setState({ comments: this.state.comments.filter((comment, i) => comment.id !== id) });
+      } else {
+        console.log('error in delete comment');
+      }
+    } catch(err) {
+      console.log(err);
+    }
+  }
+
+  showCommentModal = (id, e) => {
+    const commentToEdit = this.state.comments.find((comment) => comment.id === id);
+    console.log(commentToEdit, ' this is commentToEdit');
+    console.log(id, ' this is id');
+    this.setState({
+      showCommentEdit: true,
+      editCommentId: id,
+      commentToEdit: commentToEdit,
+    });
+  }
+
+  closeAndEditComment = async (e) => {
+    console.log('close and edit comment');
+    e.preventDefault();
+    try {
+      const editComment = await fetch('http://localhost:8000/api/comments/' + this.state.editCommentId, {
+        method: 'PUT',
+        body: JSON.stringify(this.state.commentToEdit),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const editCommentJson = await editComment.json();
+      const editedCommentArray = this.state.comments.map((comment) => {
+        if(comment.id === this.state.editCommentId) {
+          comment.comment = editCommentJson.comment;
+        }
+          return comment;
+      });
+      console.log(editCommentJson, ' this is editCommentJson');
+      console.log(editedCommentArray, ' this is editedCommentArray');
+      this.setState({
+        comment: editedCommentArray,
+        showCommentEdit: false,
+      });
+    } catch(err) {
+      console.log(err);
+    }
+  }
+
+  handleCommentFormChange = (e) => {
+    this.setState({
+      commentToEdit: {...this.state.commentToEdit, [e.target.name]: e.target.value}
+    })
+  }
+
+// ========================= Return/Display =========================
+
   render() {
     console.log(this.state)
     return (
