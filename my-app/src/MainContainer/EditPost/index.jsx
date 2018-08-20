@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import {
+    Container, Row, Col, Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle, Button, FormGroup
+  } from 'reactstrap';
 
 const EditPost = (props) => {
 	return (
