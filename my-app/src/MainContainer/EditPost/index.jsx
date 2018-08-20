@@ -1,29 +1,43 @@
 import React, { Component } from 'react';
+import {
+	Container, Row, Col, Card, CardImg, CardText, CardBody,
+	CardTitle, CardSubtitle, Button, FormGroup
+  } from 'reactstrap';
 
 const EditPost = (props) => {
 	return (
-		<div>
-			<h4> Edit Post </h4>
+
+
+		<Container className="container-jumbo">
 			<form onSubmit={props.closeAndEdit}>
-				<label>
-					Date:
-					<input type="text" date="date" onChange={this.updatePost} />
-				</label>
-				<label>
-					Title:
-					<input type="text" title="title" onChange={this.updatePost} />
-				</label>
-				<label>
-					Body:
-					<input type="text" body="body" onChange={this.updatePost} />
-				</label>
-				<label>
-					img_url:
-					<input type="text" imgUrl="imgUrl" onChange={this.updatePost} />
-				</label>
-				<input type="Submit" />
+				<FormGroup>
+					<label className="date-label">Date:</label>
+					<input className="form-control" type="text" date="date" onChange={this.updatePost} />
+				</FormGroup>
+
+				<FormGroup>
+					<label className="title-label">Title:</label>
+					<input className="form-control" type="text" title="title" onChange={this.updatePost} />
+				</FormGroup>
+
+				<FormGroup>
+					<label className="body-label">Write post below:</label>
+					<textarea className="form-control" rows="10" type="textarea" name="name" body="body" onChange={this.updatePost} />
+				</FormGroup>
+
+				<FormGroup>
+					<label className="image-url-label">Paste image URL below:</label>
+					<input className="form-control" imgUrl="imgUrl" onChange={this.updatePost} />
+				</FormGroup>
+
+				<hr className="my-2" />
+
+				<FormGroup>
+					<input className="submit-button" type='Submit' />
+				</FormGroup>
 			</form>
-		</div>
+		</Container>
+
 	)
 }
 

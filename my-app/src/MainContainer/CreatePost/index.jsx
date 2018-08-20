@@ -40,7 +40,7 @@ class CreatePost extends Component {
 
             <FormGroup>
               <label className="body-label">Write post below:</label>
-              <textarea className="form-control" rows="10" type="textarea" name="name" body="body" onChange={this.updatePost} />
+              <textarea className="form-control" rows="10" type="textarea" body="body" onChange={this.updatePost} />
             </FormGroup>
 
             <FormGroup>
