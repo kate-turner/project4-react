@@ -12,7 +12,7 @@ const Posts = (props) => {
     console.log(post, ' post id')
 
     return (   
-    
+
       <Container className="container">
         <Row>
           <Col>
