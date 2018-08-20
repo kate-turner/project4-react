@@ -1,19 +1,25 @@
 import React from 'react';
+import {
+  Container, Row, Col, Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap';
 
 
 
-const Posts = (props) => {
+   
+    
+  const Posts = (props) => {
 
   const postList = props.posts.map((post, i ) => {
     console.log(post, ' post id')
     return (
-      <li key={post._id}> {post}
+      <li key={post.id}> 
         <h1>{post.title}</h1><br/>
         <small>{post.date}</small><br/>
         <small>{post.body}</small><br/>
-        <img src={post.imgUrl}/>
-        <button onClick={props.deletePost.bind(null, post._id)}>Delete</button>
-        <button onClick={props.showModal.bind(null, post._id)}>Edit</button>
+        <img src={post.img_url}/>
+        <button onClick={props.deletePost.bind(null, post.id)}>Delete</button>
+        <button onClick={props.showModal.bind(null, post.id)}>Edit</button>
     </li>
     )  
   })
@@ -25,7 +31,7 @@ const Posts = (props) => {
     <ul>
       {postList}
     </ul>
-    )
+  )
 
 };
 
