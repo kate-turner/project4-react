@@ -7,21 +7,21 @@ const EditPost = (props) => {
 			<form onSubmit={props.closeAndEdit}>
 				<label>
 					Date:
-					<input type="text" date="date" onChange={this.updatePost}/>
+					<input type="text" date="date" onChange={this.updatePost} />
 				</label>
 				<label>
 					Title:
-					<input type="text" title="title" onChange={this.updatePost}/>
+					<input type="text" title="title" onChange={this.updatePost} />
 				</label>
 				<label>
 					Body:
-					<input type="text" body="body" onChange={this.updatePost}/>
+					<input type="text" body="body" onChange={this.updatePost} />
 				</label>
 				<label>
 					img_url:
-					<input type="text" imgUrl="imgUrl" onChange={this.updatePost}/>
+					<input type="text" imgUrl="imgUrl" onChange={this.updatePost} />
 				</label>
-				<input type="Submit"/>
+				<input type="Submit" />
 			</form>
 		</div>
 	)
