@@ -13,22 +13,22 @@ const EditPost = (props) => {
 
 				<FormGroup>
 					<label className="date-label">Date:</label>
-					<input className="form-control" type="text" name="date" onChange={this.updatePost} />
+					<input className="form-control" type="text" name="date" value={props.postToEdit.date} onChange={this.updatePost} />
 				</FormGroup>
 
 				<FormGroup>
 					<label className="title-label">Title:</label>
-					<input className="form-control" type="text" name="title" onChange={this.updatePost} />
+					<input className="form-control" type="text" name="title" value={props.postToEdit.title} onChange={this.updatePost} />
 				</FormGroup>
 
 				<FormGroup>
 					<label className="body-label">Write post below:</label>
-					<textarea className="form-control" rows="10" type="textarea" name="name" name="body" onChange={this.updatePost} />
+					<textarea className="form-control" rows="10" type="textarea" name="body" value={props.postToEdit.body} onChange={this.updatePost} />
 				</FormGroup>
 
 				<FormGroup>
 					<label className="image-url-label">Paste image URL below:</label>
-					<input className="form-control" imgUrl="imgUrl" onChange={this.updatePost} />
+					<input className="form-control" name="img_url" value={props.postToEdit.img_url} onChange={this.updatePost} />
 				</FormGroup>
 
 				<hr className="my-2" />
