@@ -10,19 +10,20 @@ const EditPost = (props) => {
 
 		<Container className="container-jumbo">
 			<form onSubmit={props.closeAndEdit}>
+
 				<FormGroup>
 					<label className="date-label">Date:</label>
-					<input className="form-control" type="text" date="date" onChange={this.updatePost} />
+					<input className="form-control" type="text" name="date" onChange={this.updatePost} />
 				</FormGroup>
 
 				<FormGroup>
 					<label className="title-label">Title:</label>
-					<input className="form-control" type="text" title="title" onChange={this.updatePost} />
+					<input className="form-control" type="text" name="title" onChange={this.updatePost} />
 				</FormGroup>
 
 				<FormGroup>
 					<label className="body-label">Write post below:</label>
-					<textarea className="form-control" rows="10" type="textarea" name="name" body="body" onChange={this.updatePost} />
+					<textarea className="form-control" rows="10" type="textarea" name="name" name="body" onChange={this.updatePost} />
 				</FormGroup>
 
 				<FormGroup>
@@ -35,6 +36,7 @@ const EditPost = (props) => {
 				<FormGroup>
 					<input className="submit-button" type='Submit' />
 				</FormGroup>
+
 			</form>
 		</Container>
 

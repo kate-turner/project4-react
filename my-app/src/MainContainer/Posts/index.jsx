@@ -10,6 +10,7 @@ const Posts = (props) => {
 
   const postList = props.posts.map((post, i) => {
     console.log(post, ' post id')
+
     return (   
     
       <Container className="container">
@@ -22,7 +23,7 @@ const Posts = (props) => {
                   <h3 className="blog-title">{post.title}</h3>
                 </CardTitle>
                 <CardSubtitle>
-                  <div key={post._id}>
+                  <div key={post.id}>
                     <h6>{post.date}</h6>
                   </div>
                 </CardSubtitle>
@@ -33,12 +34,12 @@ const Posts = (props) => {
             </Card>
           </Col>
         </Row>
-        <button onClick={props.deletePost.bind(null, post._id)}>Delete</button>
-        <button onClick={props.showModal.bind(null, post._id)}>Edit</button>
+        <button onClick={props.deletePost.bind(null, post.id)}>Delete</button>
+        <button onClick={props.showModal.bind(null, post.id)}>Edit</button>
       </Container>
 
     )
-  })
+})
 
 
 

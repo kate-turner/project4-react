@@ -5,6 +5,7 @@ import Navigation from '../Nav/Nav.jsx'
 import CreatePost from './CreatePost';
 import EditPost from './EditPost';
 import { Route, Switch, Link } from 'react-router-dom';
+
 import {
   Container, Row, Col, Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
@@ -18,19 +19,21 @@ class MainContainer extends Component {
     super();
 
     this.state = {
-      posts: [],
+      posts: ['hi'],
+      showEdit: false,
       editPostId: null,
       postToEdit: {
         date: '',
         title: '',
         body: '',
-        imgUrl: '',
+        img_url: '',
       }
     }
   }
   componentDidMount() {
     this.getPosts().then((posts) => {
-      this.setState({ posts: posts })
+
+      this.setState({posts: posts})
     }).catch((err) => {
       console.log(err);
     })
@@ -55,31 +58,39 @@ class MainContainer extends Component {
       });
 
       const createdPostJson = await createdPost.json();
-      this.setState({ posts: [...this.state.posts, createdPostJson.data] });
-    } catch (err) {
+      if(createdPostJson.status === 200){
+      this.setState({posts: [...this.state.posts, createdPostJson]});
+    }else{
+      console.log(createdPostJson)
+    } 
+  } catch(err) {
       console.log(err)
     }
   }
+  
   deletePost = async (id, e) => {
-    console.log(id, ' this is id')
+    console.log(id, ' this is id of the post in the delete route');
     e.preventDefault();
     try {
-      const deletePost = await fetch('http://localhost:8000/api/posts/' + id, {
-        method: 'DELETE'
+      const deletePost = await fetch('http://localhost:8000/api/posts/' + id + '/', {
+        method: 'DELETE',
       });
-      console.log('inside try')
-      const deletePostJson = await deletePost.json();
-      this.setState({ posts: this.state.posts.filter((post, i) => post._id !== id) });
-
-    } catch (err) {
+      console.log(deletePost, 'inside try');
+      
+      if (deletePost.status === 204) {
+        this.setState({ posts: this.state.posts.filter((post, i) => post.id !== id) });
+      } else {
+        console.log('no deleting');
+      } 
+     } catch (err) {
       console.log(err, ' error')
+      }
     }
-
-
-  }
+      
+      
   showModal = (id, e) => {
     // i comes before e, when called with bind
-    const postToEdit = this.state.posts.find((post) => post._id === id)
+    const postToEdit = this.state.posts.find((post) => post.id === id)
     console.log(postToEdit, ' postToEdit')
     this.setState({
       showEdit: true,
@@ -91,7 +102,8 @@ class MainContainer extends Component {
     e.preventDefault();
 
     try {
-      const editResponse = await fetch('http://localhost:8000/api/posts/' + this.state.editPostId, {
+
+      const editResponse = await fetch('http://localhost:8000/api/posts/' + this.state.editPostId + '/', {
         method: 'PUT',
         body: JSON.stringify(this.state.postToEdit),
         headers: {
@@ -103,13 +115,13 @@ class MainContainer extends Component {
 
       const editedPostArray = this.state.posts.map((post) => {
 
-        if (post._id === this.state.editPostId) {
+        if (post.id === this.state.editPostId) {
 
 
-          post.date = editResponseJson.data.date;
-          post.title = editResponseJson.data.title;
-          post.body = editResponseJson.data.body;
-          post.imgUrl = editResponseJson.data.imgUrl;
+          post.date = editResponseJson.date;
+          post.title = editResponseJson.title;
+          post.body = editResponseJson.body;
+          post.imgUrl = editResponseJson.img_url;
         }
 
         return post

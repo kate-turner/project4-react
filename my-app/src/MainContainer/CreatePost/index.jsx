@@ -30,17 +30,20 @@ class CreatePost extends Component {
           <form onSubmit={this.props.addPost.bind(this, this.state)}>
             <FormGroup>
               <label className="date-label">Date:</label>
-              <input className="form-control" type="text" date="date" onChange={this.updatePost} />
+              <input className="form-control" type="text" name="date" onChange={this.updatePost} />
             </FormGroup>
 
             <FormGroup>
               <label className="title-label">Title:</label>
-              <input className="form-control" type="text" title="title" onChange={this.updatePost} />
+              <input className="form-control" type="text" name="title" onChange={this.updatePost} />
             </FormGroup>
 
             <FormGroup>
               <label className="body-label">Write post below:</label>
-              <textarea className="form-control" rows="10" type="textarea" body="body" onChange={this.updatePost} />
+
+
+              <textarea className="form-control" rows="10" type="textarea" name="body" onChange={this.updatePost} />
+
             </FormGroup>
 
             <FormGroup>
