@@ -6,40 +6,23 @@ import {
 
 
 
-const Posts = (props) => {
-
-  const postList = props.posts.map((post, i) => {
-    console.log(post, ' post id')
-
-    return (   
+   
     
-      <Container className="container">
-        <Row>
-          <Col>
-            <Card>
-              <CardImg top width="auto" src="{post.imgUrl}" alt="" />
-              <CardBody>
-                <CardTitle>
-                  <h3 className="blog-title">{post.title}</h3>
-                </CardTitle>
-                <CardSubtitle>
-                  <div key={post.id}>
-                    <h6>{post.date}</h6>
-                  </div>
-                </CardSubtitle>
-                <CardText className="blog-body">
-                  {post.body}
-                </CardText>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
+  const Posts = (props) => {
+
+  const postList = props.posts.map((post, i ) => {
+    console.log(post, ' post id')
+    return (
+      <li key={post.id}> 
+        <h1>{post.title}</h1><br/>
+        <small>{post.date}</small><br/>
+        <small>{post.body}</small><br/>
+        <img src={post.img_url}/>
         <button onClick={props.deletePost.bind(null, post.id)}>Delete</button>
         <button onClick={props.showModal.bind(null, post.id)}>Edit</button>
-      </Container>
-
-    )
-})
+    </li>
+    )  
+  })
 
 
 
