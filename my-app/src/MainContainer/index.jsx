@@ -43,7 +43,7 @@ class MainContainer extends Component {
     }).catch((err) => {
       console.log(err);
     });
-    this.getComment().then((comments) => {
+    this.getComments().then((comments) => {
       this.setState({ comments: comments})
     }).catch((err) => {
       console.log(err);
