@@ -15,7 +15,7 @@ const Posts = (props) => {
     return (
       <Container className="container">
         <Row>
-          <Col>
+          <Col className="column-posts" sm="4">
             <Card>
               <CardImg top width="auto" src={post.img_url} alt="" />
               <CardBody>

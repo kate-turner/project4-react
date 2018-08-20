@@ -39,12 +39,12 @@ class MainContainer extends Component {
 
   componentDidMount() {
     this.getPosts().then((posts) => {
-      this.setState({posts: posts})
+      this.setState({ posts: posts })
     }).catch((err) => {
       console.log(err);
     });
     this.getComments().then((comments) => {
-      this.setState({ comments: comments})
+      this.setState({ comments: comments })
     }).catch((err) => {
       console.log(err);
     })
@@ -70,16 +70,16 @@ class MainContainer extends Component {
       });
 
       const createdPostJson = await createdPost.json();
-      if(createdPostJson.status === 200){
-      this.setState({posts: [...this.state.posts, createdPostJson]});
-    }else{
-      console.log(createdPostJson)
-    } 
-  } catch(err) {
+      if (createdPostJson.status === 200) {
+        this.setState({ posts: [...this.state.posts, createdPostJson] });
+      } else {
+        console.log(createdPostJson)
+      }
+    } catch (err) {
       console.log(err)
     }
   }
-  
+
   deletePost = async (id, e) => {
     console.log(id, ' this is id of the post in the delete route');
     e.preventDefault();
@@ -88,18 +88,18 @@ class MainContainer extends Component {
         method: 'DELETE',
       });
       console.log(deletePost, 'inside try');
-      
+
       if (deletePost.status === 204) {
         this.setState({ posts: this.state.posts.filter((post, i) => post.id !== id) });
       } else {
         console.log('no deleting');
-      } 
-     } catch (err) {
-      console.log(err, ' error')
       }
+    } catch (err) {
+      console.log(err, ' error')
     }
-      
-      
+  }
+
+
   showModal = (id, e) => {
     // i comes before e, when called with bind
     const postToEdit = this.state.posts.find((post) => post.id === id)
@@ -153,7 +153,7 @@ class MainContainer extends Component {
   handleFormChange = (e) => {
 
     this.setState({
-      postToEdit: {...this.state.postToEdit, [e.target.name]: e.target.value}
+      postToEdit: { ...this.state.postToEdit, [e.target.name]: e.target.value }
     })
   }
 
@@ -199,7 +199,7 @@ class MainContainer extends Component {
       } else {
         console.log('error in delete comment');
       }
-    } catch(err) {
+    } catch (err) {
       console.log(err);
     }
   }
@@ -229,10 +229,10 @@ class MainContainer extends Component {
 
       const editCommentJson = await editComment.json();
       const editedCommentArray = this.state.comments.map((comment) => {
-        if(comment.id === this.state.editCommentId) {
+        if (comment.id === this.state.editCommentId) {
           comment.comment = editCommentJson.comment;
         }
-          return comment;
+        return comment;
       });
       console.log(editCommentJson, ' this is editCommentJson');
       console.log(editedCommentArray, ' this is editedCommentArray');
@@ -240,18 +240,18 @@ class MainContainer extends Component {
         comment: editedCommentArray,
         showCommentEdit: false,
       });
-    } catch(err) {
+    } catch (err) {
       console.log(err);
     }
   }
 
   handleCommentFormChange = (e) => {
     this.setState({
-      commentToEdit: {...this.state.commentToEdit, [e.target.name]: e.target.value}
+      commentToEdit: { ...this.state.commentToEdit, [e.target.name]: e.target.value }
     })
   }
 
-// ========================= Return/Display =========================
+  // ========================= Return/Display =========================
 
   render() {
     console.log(this.state)
@@ -259,6 +259,8 @@ class MainContainer extends Component {
       <Aux>
 
         <Navigation />
+        <h1 className="main-title"> Whatever Blog</h1>
+        <Carousel />
 
         <Switch>
           <Route exact path="/" render={(props) => (
@@ -273,12 +275,6 @@ class MainContainer extends Component {
 
         {this.state.showEdit ? <EditPost closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} postToEdit={this.state.postToEdit} /> : null}
 
-
-        <h1 className="main-title"> Whatever Blog</h1>
-
-        <Carousel />
-
-        
       </Aux>
     );
   }
