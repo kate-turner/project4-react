@@ -17,13 +17,13 @@ class MainContainer extends Component {
     super();
 
     this.state = {
-      posts: [],
+      posts: ['hi'],
       editPostId: null,
       postToEdit: {
-        date: '',
-        title: '',
-        body: '',
-        imgUrl: '',
+        date: '8',
+        title: '1',
+        body: '2',
+        imgUrl: '2',
       }
     }
   }
@@ -90,7 +90,7 @@ class MainContainer extends Component {
     e.preventDefault();
 
     try {
-      const editResponse = await fetch('http://localhost:8000/api/posts/' + this.state.editMovieId, {
+      const editResponse = await fetch('http://localhost:8000/api/posts/' + this.state.editPostId, {
         method: 'PUT',
         body: JSON.stringify(this.state.postToEdit),
         headers: {
@@ -156,7 +156,8 @@ class MainContainer extends Component {
 
         </Switch>
 
-        {this.state.showEdit ? <EditPost closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} postToEdit={this.state.postToEdit} /> : null}
+        <EditPost posts={this.state.posts} closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} postToEdit={this.state.postToEdit} />
+        {this.state.showEdit ? <EditPost posts={this.state.posts} closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} postToEdit={this.state.postToEdit} /> : null}
 
 
         <h1 className="main-title"> Whatever Blog</h1>
