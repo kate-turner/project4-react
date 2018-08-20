@@ -19,14 +19,6 @@ class MainContainer extends Component {
 
     this.state = {
       posts: ['hi'],
-<<<<<<< HEAD
-      editPostId: null,
-      postToEdit: {
-        date: '8',
-        title: '1',
-        body: '2',
-        imgUrl: '2',
-=======
       showEdit: false,
       editPostId: null,
       postToEdit: {
@@ -34,7 +26,6 @@ class MainContainer extends Component {
         title: '',
         body: '',
         img_url: '',
->>>>>>> master
       }
     }
   }
@@ -95,7 +86,7 @@ class MainContainer extends Component {
     }
       
       
-  showModal = (id, e) => {
+showModal = (id, e) => {
     // i comes before e, when called with bind
     const postToEdit = this.state.posts.find((post) => post.id === id)
     console.log(postToEdit, ' postToEdit')
@@ -109,17 +100,14 @@ class MainContainer extends Component {
     e.preventDefault();
 
     try {
-<<<<<<< HEAD
-      const editResponse = await fetch('http://localhost:8000/api/posts/' + this.state.editPostId, {
-=======
       const editResponse = await fetch('http://localhost:8000/api/posts/' + this.state.editPostId + '/', {
->>>>>>> master
         method: 'PUT',
         body: JSON.stringify(this.state.postToEdit),
         headers: {
           'Content-Type': 'application/json'
         }
       });
+
 
       const editResponseJson = await editResponse.json();
 
