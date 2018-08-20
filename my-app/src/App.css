@@ -20,6 +20,9 @@
 .container {
   padding-top: 60px;
 }
+.column-posts {
+  max-height: 40%;
+}
 /* .link-new {
   font-family: 'Merienda', cursive;
   font-size: 80px;
