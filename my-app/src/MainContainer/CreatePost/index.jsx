@@ -48,7 +48,7 @@ class CreatePost extends Component {
 
             <FormGroup>
               <label className="image-url-label">Paste image URL below:</label>
-              <input className="form-control" imgUrl="imgUrl" onChange={this.updatePost} />
+              <input className="form-control" name="img_url" onChange={this.updatePost} />
             </FormGroup>
 
             <hr className="my-2" />
