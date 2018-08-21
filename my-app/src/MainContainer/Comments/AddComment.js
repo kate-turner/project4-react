@@ -16,6 +16,7 @@ class CreateComment extends Component {
     }
 
     render() {
+        console.log(this.props, ' this is props at createcomment');
         return (
             <div>
                 <form onSubmit={this.props.addComment.bind(this, this.state)}>

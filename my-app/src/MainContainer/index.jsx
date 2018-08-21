@@ -168,6 +168,7 @@ class MainContainer extends Component {
   }
 
   addComment = async (comment, e) => {
+    console.log(comment, ' this is comment');
     e.preventDefault();
 
     try {
