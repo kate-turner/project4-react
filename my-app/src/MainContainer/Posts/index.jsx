@@ -9,7 +9,6 @@ import Comments from '../Comments.js'
 
 
 
-
 const Posts = (props) => {
 
   const postList = props.posts.map((post, i) => {
@@ -18,7 +17,7 @@ const Posts = (props) => {
     // console.log(props.comments[0], ' this is props comments in Posts');
     return (
 
-      <Container className="container">
+    
           <Col className="column-posts" sm="6">
               <Card key={post.id}>
               <CardImg top width="auto" src={post.img_url} alt="" />
@@ -43,7 +42,7 @@ const Posts = (props) => {
               </CardBody>
             </Card>
           </Col>
-      </Container>
+    
     )
   })
       
@@ -59,3 +58,5 @@ const Posts = (props) => {
 };
 
 export default Posts;
+
+            

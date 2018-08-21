@@ -1,6 +1,7 @@
 import React from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 
+
 const Comments = (props) => {
     let apiPostID = 'http://localhost:8000/api/posts/' + props.postID + '/';
 
@@ -10,15 +11,16 @@ const Comments = (props) => {
         if (apiPostID === comment.post) {
             return (
                 <div key={comment.id}>
+                    <div className="scroll">
+                        <ListGroup>
+                            <ListGroupItem>
 
-                    <ListGroup>
-                        <ListGroupItem>
-                            <span>{comment.date}</span><br />
-                            <span>{comment.body}</span><br />
-                        </ListGroupItem>
+                                <span>{comment.date}</span><br />
+                                <span>{comment.body}</span><br />
 
-                    </ListGroup>
-
+                            </ListGroupItem>
+                        </ListGroup>
+                    </div>
                     <div>
                         <button className="btn btn-danger btn-sm delete-comment-btn" onClick={props.deleteComment.bind(null, comment.id)}>Delete</button>
                         <button className="btn btn-warning btn-sm edit-commit-btn" onClick={props.showCommentModal.bind(null, comment.id)}>Edit</button>
