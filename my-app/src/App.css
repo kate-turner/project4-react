@@ -31,10 +31,10 @@
   color: #B2C100;
 } */
 .navbar-main {
-  background-image: linear-gradient(to bottom,#C52C54 0,#C52C54 100%) !important; 
+  background-image: linear-gradient(to bottom,#01766B 0,#01766B 100%) !important; 
 }
 .navbarbrand {
-  color: #353535;
+  color: black;
   font-family: 'Courier New', Courier, monospace;
  
 }
@@ -55,13 +55,28 @@
 }
 
 .delete-btn{
-  margin-right: 10%;
-  margin-left: 20%;
-  margin-bottom: 15%;  
+  margin-right: 10px;
+ 
   
 }
-.edit-btn {
-  margin-bottom: 15%;
+.center-btns {
+  text-align: center;
+}
+.submit-btn {
+  margin-right: 10px;
+ 
+}
+.center-comments-form {
+  text-align: center;
+}
+.comment-date-label {
+  
+}
+.comment-body-label {
+
+}
+.comment-h3 {
+  text-align: center;
 }
 .container-jumbo {
   text-align: left;
@@ -70,3 +85,8 @@
   text-align: center;
   font-family: 'News Cycle', sans-serif;
 }
+.checkbox-robot {
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+}
+
