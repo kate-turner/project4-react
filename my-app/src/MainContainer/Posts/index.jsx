@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Container, Row, Col, Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button
+  CardTitle, CardSubtitle, Button, CardDeck
 } from 'reactstrap';
 import CreateComment from '../Comments/AddComment';
 
@@ -48,34 +48,39 @@ const Posts = (props) => {
                   postToEdit={post} 
                   showModal={props.showModal} 
                   />
+                 <Comments
+                  postID={post.id}
+                  comments={props.comments}
+                  deleteComment={props.deleteComment}
+                  
+                  showCommentModal={props.showCommentModal}
+                  closeAndEditComment={props.closeAndEditComment}
+                  commentToEdit={props.commentToEdit}
+                  handleCommentFormChange={props.handleCommentFormChange}
+                />
+
+
+                <CreateComment postID={'http://localhost:8000/api/posts/' + post.id + '/'} addComment={props.addComment} />
                 
               </CardBody>
             </Card>
           </Col>
 
-        <Comments
-          postID={post.id}
-          comments={props.comments}
-          deleteComment={props.deleteComment}
-          
-          showCommentModal={props.showCommentModal}
-          closeAndEditComment={props.closeAndEditComment}
-          commentToEdit={props.commentToEdit}
-          handleCommentFormChange={props.handleCommentFormChange}
-           />
 
-
-        <CreateComment postID={'http://localhost:8000/api/posts/' + post.id + '/'} addComment={props.addComment} />
+       
     )
   })
       
       
       
     return (
-
-    <ul>
-      {postList}
-    </ul>
+  <Container className="container">
+    <Row>
+      <CardDeck>
+        {postList}
+      </CardDeck>
+    </Row>
+  </Container>
   )
 
 };
