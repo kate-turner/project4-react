@@ -168,6 +168,7 @@ class MainContainer extends Component {
   }
 
   addComment = async (comment, e) => {
+    console.log(comment, ' this is comment');
     e.preventDefault();
 
     try {
@@ -264,7 +265,7 @@ class MainContainer extends Component {
 
         <Switch>
           <Route exact path="/" render={(props) => (
-            <Posts posts={this.state.posts} deletePost={this.deletePost} showModal={this.showModal} />
+            <Posts posts={this.state.posts} deletePost={this.deletePost} showModal={this.showModal} comments={this.state.comments} addComment={this.addComment} deleteComment={this.deleteComment} showCommentModal={this.showCommentModal}/>
           )} />
 
           <Route exact path="/new" render={(props) => (
