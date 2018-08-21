@@ -4,8 +4,11 @@ import {
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 import CreateComment from '../Comments/AddComment';
-import Comments from '../Comments.js'
+
+import Comments from '../Comments.js';
+import EditPostModal from '../EditPostModal';
 import EditCommentModal from '../../EditCommentModal'
+
 
 
 
@@ -37,7 +40,15 @@ const Posts = (props) => {
                   {post.body}
                 </CardText>
                 <button className="btn btn-danger btn-sm" onClick={props.deletePost.bind(null, post.id)}>Delete</button>
-                <button className="btn btn-warning btn-sm" onClick={props.showModal.bind(null, post.id)}>Edit</button>  
+
+
+                <EditPostModal
+                  closeAndEdit={props.closeAndEdit}
+                  handleFormChange={props.handleFormChange} 
+                  postToEdit={post} 
+                  showModal={props.showModal} 
+                  />
+                
               </CardBody>
             </Card>
           </Col>
