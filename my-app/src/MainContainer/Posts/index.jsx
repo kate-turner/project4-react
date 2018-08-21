@@ -41,22 +41,10 @@ const Posts = (props) => {
             </Card>
           </Col>
         </Row>
-<<<<<<< HEAD
         
 
         <Comments postID={post.id} comments={props.comments} deleteComment={props.deleteComment} showCommentModal={props.showCommentModal} />
         <CreateComment postID={'http://localhost:8000/api/posts/' + post.id + '/'} addComment={props.addComment} />
-=======
-
-        
-
-        <button onClick={props.deletePost.bind(null, post.id)}>Delete</button>
-        <button onClick={props.showModal.bind(null, post.id)}>Edit</button>
-
-        <Comments postID={post.id} comments={props.comments} deleteComment={props.deleteComment} showCommentModal={props.showCommentModal} />
-        <CreateComment postID={'http://localhost:8000/api/posts/' + post.id + '/'} addComment={props.addComment} />
-
->>>>>>> 5b364d7c387fb2ec1f6a93bd17b591b0e93ec5d1
       </Container>
 
     )
