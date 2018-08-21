@@ -1,40 +1,40 @@
 import React from 'react';
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import EditCommentModal from '../EditCommentModal'
 
 const Comments = (props) => {
     let apiPostID = 'http://localhost:8000/api/posts/' + props.postID + '/';
 
     const commentList = props.comments.map((comment, i) => {
-        console.log(comment, ' this is comment');
+        // console.log(comment, ' this is comment');
+           console.log(props + 'LOOK AT THIS NOW PLZ')
 
-        if (apiPostID === comment.post) {
+        if(apiPostID === comment.post) {
             return (
-                <div key={comment.id}>
+                <li key={comment.id}>
+                    <span>{comment.date}</span><br/>
+                    <span>{comment.body}</span><br/>
+                    <button onClick={props.deleteComment.bind(null, comment.id)}>Delete</button>
+{/*                    <button onClick={props.showCommentModal.bind(null, comment.id)}>Edit</button>*/}
 
-                    <ListGroup>
-                        <ListGroupItem>
-                            <span>{comment.date}</span><br />
-                            <span>{comment.body}</span><br />
-                        </ListGroupItem>
 
-                    </ListGroup>
+                    <EditCommentModal
+                        {...props}
+                        commentID={comment.id}
+                        showCommentModal={props.showCommentModal}
+                        closeAndEditComment={props.closeAndEditComment}
+                        commentToEdit={comment}
+                        handleCommentFormChange={props.handleCommentFormChange}
+                     />
 
-                    <div>
-                        <button className="btn btn-danger btn-sm delete-comment-btn" onClick={props.deleteComment.bind(null, comment.id)}>Delete</button>
-                        <button className="btn btn-warning btn-sm edit-commit-btn" onClick={props.showCommentModal.bind(null, comment.id)}>Edit</button>
-                    </div>
-                    <br></br>
-
-                </div>
+                </li>
             )
         }
     })
 
     return (
-        <div>
-            <h3>Comments:</h3>
+        <ul>
             {commentList}
-        </div>
+        </ul>
     )
 };
 

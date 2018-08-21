@@ -17,7 +17,7 @@ class CreateComment extends Component {
     }
 
     render() {
-        console.log(this.props, ' this is props at createcomment');
+        // console.log(this.props, ' this is props at createcomment');
         return (
             <div>
                 <br></br>

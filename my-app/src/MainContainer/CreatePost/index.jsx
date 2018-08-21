@@ -19,7 +19,7 @@ class CreatePost extends Component {
   }
 
   render() {
-    console.log(this.props, ' this is props')
+    // console.log(this.props, ' this is props')
     return (
       <Jumbotron className="jumbotron">
         <h1 className="h1-jumbo">Create a New Blog Post!</h1>
