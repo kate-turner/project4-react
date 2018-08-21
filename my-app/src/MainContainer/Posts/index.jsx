@@ -5,28 +5,59 @@ import {
 } from 'reactstrap';
 
 
+import Comments from '../Comments.js'
+import CreateComment from '../Comments/AddComment';
+import EditComment from '../Comments/EditComment';
+import EditPost from '../EditPost/'
 
-   
-    
-  const Posts = (props) => {
 
-  const postList = props.posts.map((post, i ) => {
-    console.log(post, ' post id')
+const Posts = (props) => {
+
+  const postList = props.posts.map((post, i) => {
+    // console.log(post, ' post id')
+    // console.log(props.comments[0], ' this is props comments in Posts');
     return (
-      <li key={post.id}> 
-        <h1>{post.title}</h1><br/>
-        <small>{post.date}</small><br/>
-        <small>{post.body}</small><br/>
-        <img src={post.img_url}/>
+      <Container className="container">
+        <Row>
+          <Col className="column-posts" sm="4">
+            <Card>
+              <CardImg top width="auto" src={post.img_url} alt="" />
+              <CardBody>
+                <CardTitle>
+                  <h3 className="blog-title">{post.title}</h3>
+                </CardTitle>
+                <CardSubtitle>
+                  <div key={post.id}>
+                    <h6>{post.date}</h6>
+                  </div>
+                </CardSubtitle>
+                <CardText className="blog-body">
+                  {post.body}
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
         <button onClick={props.deletePost.bind(null, post.id)}>Delete</button>
         <button onClick={props.showModal.bind(null, post.id)}>Edit</button>
-    </li>
-    )  
+
+        <Comments postID={post.id} comments={props.comments} deleteComment={props.deleteComment} showCommentModal={props.showCommentModal} />
+
+
+        {(props.showEdit) ? <EditPost closeAndEdit={props.closeAndEdit} handleFormChange={props.handleFormChange} postToEdit={props.postToEdit} /> : null}
+
+        {(props.showCommentEdit) ? <EditComment closeAndEditComment={props.closeAndEditComment} handleCommentFormChange={props.handleCommentFormChange} commentToEdit={props.commentToEdit} /> : null}
+
+
+        <CreateComment postID={'http://localhost:8000/api/posts/' + post.id + '/'} addComment={props.addComment} />
+      </Container>
+
+    )
   })
-
-
-
-  return (
+      
+      
+      
+    return (
 
     <ul>
       {postList}

@@ -19,7 +19,7 @@ class CreatePost extends Component {
   }
 
   render() {
-    console.log(this.props, ' this is props')
+    // console.log(this.props, ' this is props')
     return (
       <Jumbotron className="jumbotron">
         <h1 className="h1-jumbo">Create a New Blog Post!</h1>
@@ -40,15 +40,12 @@ class CreatePost extends Component {
 
             <FormGroup>
               <label className="body-label">Write post below:</label>
-
-
               <textarea className="form-control" rows="10" type="textarea" name="body" onChange={this.updatePost} />
-
             </FormGroup>
-
+            
             <FormGroup>
               <label className="image-url-label">Paste image URL below:</label>
-              <input className="form-control" imgUrl="imgUrl" onChange={this.updatePost} />
+              <input className="form-control" name="img_url" onChange={this.updatePost} />
             </FormGroup>
 
             <hr className="my-2" />
