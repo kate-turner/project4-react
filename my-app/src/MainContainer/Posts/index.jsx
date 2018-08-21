@@ -4,6 +4,7 @@ import {
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 import CreateComment from '../Comments/AddComment';
+import Comments from '../Comments.js'
 
 
 
@@ -13,7 +14,7 @@ const Posts = (props) => {
 
   const postList = props.posts.map((post, i) => {
     console.log(post, ' post id')
-    console.log(props.comments[0], ' this is props comments in Posts');
+    // console.log(props.comments[0], ' this is props comments in Posts');
     return (
       <Container className="container">
         <Row>
@@ -39,7 +40,7 @@ const Posts = (props) => {
         <button onClick={props.deletePost.bind(null, post.id)}>Delete</button>
         <button onClick={props.showModal.bind(null, post.id)}>Edit</button>
 
-        <Comments postID={post.id} comments={props.comments} deleteComment={props.deleteComment} showCommentModal={props.showCommentModal} />
+        {/* <Comments postID={post.id} comments={props.comments} deleteComment={props.deleteComment} showCommentModal={props.showCommentModal} /> */}
         <CreateComment postID={'http://localhost:8000/api/commments/' + post.id} addComment={props.addComment} />
       </Container>
 
