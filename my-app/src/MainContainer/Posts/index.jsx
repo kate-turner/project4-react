@@ -35,8 +35,8 @@ const Posts = (props) => {
                 <CardText className="blog-body">
                   {post.body}
                 </CardText>
-                <button className="btn btn-danger btn-sm" onClick={props.deletePost.bind(null, post.id)}>Delete</button>
-                <button className="btn btn-warning btn-sm" onClick={props.showModal.bind(null, post.id)}>Edit</button>  
+                <button className="btn btn-danger btn-sm delete-btn" onClick={props.deletePost.bind(null, post.id)}>Delete</button>
+                <button className="btn btn-warning btn-sm edit-btn" onClick={props.showModal.bind(null, post.id)}>Edit</button>  
               
                 <CreateComment postID={'http://localhost:8000/api/posts/' + post.id + '/'} addComment={props.addComment} /> 
               
