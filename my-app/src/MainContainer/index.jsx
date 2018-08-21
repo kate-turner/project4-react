@@ -12,6 +12,7 @@ import {
 } from 'reactstrap';
 import '../App.css'
 import Carousel from '../Carousel/Carousel';
+import EditComment from './Comments/EditComment';
 
 class MainContainer extends Component {
   constructor() {
@@ -190,7 +191,7 @@ class MainContainer extends Component {
     e.preventDefault();
     console.log('deleteComment function is being called, this is the id: ', id);
     try {
-      const deleteComment = await fetch('http://localhost:8000/api/commments/' + id, {
+      const deleteComment = await fetch('http://localhost:8000/api/comments/' + id + '/', {
         method: 'DELETE'
       });
       console.log(deleteComment, ' this is delete comment');
@@ -201,7 +202,7 @@ class MainContainer extends Component {
         console.log('error in delete comment');
       }
     } catch (err) {
-      console.log(err);
+      console.log(err, ' this is error caught when deleted comment');
     }
   }
 
@@ -275,6 +276,9 @@ class MainContainer extends Component {
         </Switch>
 
         {this.state.showEdit ? <EditPost closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} postToEdit={this.state.postToEdit} /> : null}
+        
+        {this.state.showCommentEdit ? <EditComment closeAndEditComment={this.closeAndEditComment} handleCommentFormChange={this.handleCommentFormChange} commentToEdit={this.state.commentToEdit} /> : null}
+
 
       </Aux>
     );
