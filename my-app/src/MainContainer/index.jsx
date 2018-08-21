@@ -4,7 +4,9 @@ import Aux from '../hoc/Aux';
 import Navigation from '../Nav/Nav.jsx'
 import CreatePost from './CreatePost';
 import EditPost from './EditPost';
-import { Route, Switch, Link } from 'react-router-dom';
+// import PostsShowPage from './PostsShowPage';
+import {Route, Redirect, Switch, Link } from 'react-router-dom';
+
 
 import {
   Container, Row, Col, Card, CardImg, CardText, CardBody,
@@ -46,6 +48,7 @@ class MainContainer extends Component {
   }
   addPost = async (post, e) => {
     e.preventDefault();
+    console.log('this is post')
     try {
       const createdPost = await fetch('http://localhost:8000/api/posts/', {
         method: 'POST',
@@ -56,12 +59,9 @@ class MainContainer extends Component {
       });
 
       const createdPostJson = await createdPost.json();
-      if(createdPostJson.status === 200){
+      console.log(createdPostJson);
       this.setState({posts: [...this.state.posts, createdPostJson]});
-    }else{
-      console.log(createdPostJson)
-    } 
-  } catch(err) {
+    } catch(err) {
       console.log(err)
     }
   }
@@ -74,13 +74,8 @@ class MainContainer extends Component {
         method: 'DELETE',
       });
       console.log(deletePost, 'inside try');
-      
-      if (deletePost.status === 204) {
-        this.setState({ posts: this.state.posts.filter((post, i) => post.id !== id) });
-      } else {
-        console.log('no deleting');
-      } 
-     } catch (err) {
+      this.setState({ posts: this.state.posts.filter((post, i) => post.id !== id) });
+    } catch (err) {
       console.log(err, ' error')
       }
     }
@@ -145,6 +140,9 @@ class MainContainer extends Component {
       }
     })
   }
+
+ 
+  
   render() {
     console.log(this.state)
     return (
@@ -158,7 +156,7 @@ class MainContainer extends Component {
           )} />
 
           <Route exact path="/new" render={(props) => (
-            <CreatePost {...props} addPost={this.addPost} />
+            <CreatePost {...props} addPost={this.addPost}/>
           )} />
 
         </Switch>

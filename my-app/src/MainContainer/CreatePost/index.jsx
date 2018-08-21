@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Container, Row, Button, Form, FormGroup, Label, Input, FormText, Jumbotron } from 'reactstrap';
+import { Route } from 'react-router-dom'
 
 class CreatePost extends Component {
   constructor(props) {
@@ -27,7 +28,12 @@ class CreatePost extends Component {
         <hr className="my-2" />
 
         <Container className="container-jumbo">
-          <form onSubmit={this.props.addPost.bind(this, this.state)}>
+          <form onSubmit={ async (e) => 
+            {await this.props.addPost(this.state, e); 
+              this.props.history.push('/');
+             
+            }} >
+         
             <FormGroup>
               <label className="date-label">Date:</label>
               <input className="form-control" type="text" name="date" onChange={this.updatePost} />
@@ -54,7 +60,7 @@ class CreatePost extends Component {
             <hr className="my-2" />
 
             <FormGroup>
-              <input className="submit-button" type='Submit' />
+              <input className="submit-button" type='Submit'  />
             </FormGroup>
           </form>
         </Container>

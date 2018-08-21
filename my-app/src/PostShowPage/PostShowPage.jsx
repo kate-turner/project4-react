@@ -50,6 +50,9 @@ const PostShowPage = (props) => {
         </Container>
 
     )
+    render (
+    PostShowPage
+    )
 }
 
 export default PostShowPage;
