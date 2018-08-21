@@ -35,6 +35,8 @@
 }
 .navbarbrand {
   color: #353535;
+  font-family: 'Courier New', Courier, monospace;
+ 
 }
 .jumbotron {
   margin-top: 50px;
@@ -42,9 +44,24 @@
   margin-right: 50px;
   
 }
-.btn {
+.home-image {
+    display: block stretch;
+    margin-left: 0%;
+    margin-right: 0%;
+    width: 100%;
+    margin-top: 0px;
+    padding: 0px;
+
+}
+
+.delete-btn{
+  margin-right: 10px;
+  margin-left: 60px;
+  margin-bottom: 15px;  
   
-  
+}
+.edit-btn {
+  margin-bottom: 15px;
 }
 .container-jumbo {
   text-align: left;
