@@ -39,6 +39,7 @@ const Posts = (props) => {
         <button onClick={props.deletePost.bind(null, post.id)}>Delete</button>
         <button onClick={props.showModal.bind(null, post.id)}>Edit</button>
 
+        <Comments postID={post.id} comments={props.comments} deleteComment={props.deleteComment} showCommentModal={props.showCommentModal} />
         <CreateComment postID={'http://localhost:8000/api/commments/' + post.id} addComment={props.addComment} />
       </Container>
 
