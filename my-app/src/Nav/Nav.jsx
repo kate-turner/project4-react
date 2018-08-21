@@ -30,11 +30,14 @@ import {
       isOpen: !this.state.isOpen
     });
   }
+
+
+
   render() {
     return (
       <Aux >
      <Navbar className="navbar-main" color="light" light toggleable>
-          <NavbarBrand className="navbarbrand" href="/">Whatever Blog</NavbarBrand>
+          <NavbarBrand className="navbarbrand"  src="" href="/">Writer's Blog</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

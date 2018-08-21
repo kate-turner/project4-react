@@ -37,14 +37,20 @@ const Posts = (props) => {
                 </CardText>
                 <button className="btn btn-danger btn-sm" onClick={props.deletePost.bind(null, post.id)}>Delete</button>
                 <button className="btn btn-warning btn-sm" onClick={props.showModal.bind(null, post.id)}>Edit</button>  
+              
+                <CreateComment postID={'http://localhost:8000/api/posts/' + post.id + '/'} addComment={props.addComment} /> 
+              
+                <Comments postID={post.id} comments={props.comments} deleteComment={props.deleteComment} showCommentModal={props.showCommentModal} />
+
+
               </CardBody>
             </Card>
           </Col>
         </Row>
         
 
-        <Comments postID={post.id} comments={props.comments} deleteComment={props.deleteComment} showCommentModal={props.showCommentModal} />
-        <CreateComment postID={'http://localhost:8000/api/posts/' + post.id + '/'} addComment={props.addComment} />
+
+        
       </Container>
 
     )
