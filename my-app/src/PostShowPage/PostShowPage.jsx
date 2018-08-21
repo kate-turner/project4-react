@@ -7,38 +7,18 @@ import {
 const PostShowPage = (props) => {
     return (
         <Container className="container">
-            <Row>
-                <Col>
-                    <Card>
-                        <CardImg top width="auto" src={post.img_url} alt="" />
-                        <CardBody>
-                            <CardTitle>
-                                <h3 className="blog-title">{post.title}</h3>
-                            </CardTitle>
-                            <CardSubtitle>
-                                <div key={post.id}>
-                                    <h6>{post.date}</h6>
-                                </div>
-                            </CardSubtitle>
-                            <CardText className="blog-body">
-                                {post.body}
-                            </CardText>
-                        </CardBody>
-                    </Card>
-                </Col>
-            </Row>
+            <h2 className="show-posts-h2">{post.title}</h2>
+            <h4 className="show-posts-h4">{post.date}</h4>
+            <img src={post.img_url} alt=""/>
+            <p className="show-posts-p">{post.body}</p>
+
+
+
+
             <button onClick={props.deletePost.bind(null, post.id)}>Delete</button>
             <button onClick={props.showModal.bind(null, post.id)}>Edit</button>
 
-            <Row>
-                <Col>
-                    <Card>
-                        <CardText className="comment-body">
-                            this is where the comment will show up but, I don't know the route?
-                        </CardText>
-                    </Card>
-                </Col>
-            </Row>
+            
 
             <FormGroup>
                 <form onSubmit="#">

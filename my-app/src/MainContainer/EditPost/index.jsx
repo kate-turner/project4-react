@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import {
 	Container, Row, Col, Card, CardImg, CardText, CardBody,
-	CardTitle, CardSubtitle, Button, FormGroup
+	CardTitle, CardSubtitle, Button, FormGroup, Jumbotron
   } from 'reactstrap';
 
 const EditPost = (props) => {
 	return (
 
-
+		<Jumbotron className="jumbotron-edit-post">
 		<Container className="container-jumbo">
 			<form onSubmit={props.closeAndEdit}>
+
+				<h2 className="edit-post-h2">Edit Blog Post</h2>
+
+				<hr className="my-2" />
 
 				<FormGroup>
 					<label className="date-label">Date:</label>
@@ -34,12 +38,12 @@ const EditPost = (props) => {
 				<hr className="my-2" />
 
 				<FormGroup>
-					<input className="submit-button" type='Submit' />
+					<button className="btn btn-primary btn-lg" type='Submit'>Submit</button>
 				</FormGroup>
 
 			</form>
 		</Container>
-
+		</Jumbotron>
 	)
 }
 
