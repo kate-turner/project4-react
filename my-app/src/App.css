@@ -31,11 +31,12 @@
   color: #B2C100;
 } */
 .navbar-main {
-  background-image: linear-gradient(to bottom,#01766B 0,#01766B 100%) !important; 
+  background-image: linear-gradient(to bottom,rgb(99, 150, 162) 0, rgb(99, 150, 162) 100%) !important; 
+ 
 }
-.navbarbrand {
-  color: black;
+.link{
   font-family: 'Courier New', Courier, monospace;
+  
  
 }
 .jumbotron {
@@ -69,9 +70,9 @@
 .center-comments-form {
   text-align: center;
 }
-.comment-date-label {
-  
-}
+/* .center-textarea {
+  width:  
+} */
 .comment-body-label {
 
 }
