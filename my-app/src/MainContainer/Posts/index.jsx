@@ -10,7 +10,6 @@ import EditCommentModal from '../../EditCommentModal'
 
 
 
-
 const Posts = (props) => {
 
   const postList = props.posts.map((post, i) => {
@@ -18,11 +17,12 @@ const Posts = (props) => {
 
     console.log(props.comments[0], ' this is props comments in Posts');
     return (
-      <Container className="container">
-        
-        <Row>
-          <Col className="column-posts" sm="4">
-            <Card>
+
+
+    
+          <Col className="column-posts" sm="6">
+              <Card key={post.id}>
+
               <CardImg top width="auto" src={post.img_url} alt="" />
               <CardBody>
                 <CardTitle>
@@ -41,8 +41,6 @@ const Posts = (props) => {
               </CardBody>
             </Card>
           </Col>
-        </Row>
-        
 
         <Comments
           postID={post.id}
@@ -57,8 +55,6 @@ const Posts = (props) => {
 
 
         <CreateComment postID={'http://localhost:8000/api/posts/' + post.id + '/'} addComment={props.addComment} />
-      </Container>
-
     )
   })
       
@@ -75,3 +71,4 @@ const Posts = (props) => {
 
 
 export default Posts;
+
