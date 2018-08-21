@@ -4,8 +4,10 @@ import {
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 import CreateComment from '../Comments/AddComment';
+
 import Comments from '../Comments.js';
 import EditPostModal from '../EditPostModal';
+import EditCommentModal from '../../EditCommentModal'
 
 
 
@@ -14,15 +16,16 @@ import EditPostModal from '../EditPostModal';
 const Posts = (props) => {
 
   const postList = props.posts.map((post, i) => {
-    console.log(post, ' post id')
+    // console.log(post, ' post id')
 
-    // console.log(props.comments[0], ' this is props comments in Posts');
+    console.log(props.comments[0], ' this is props comments in Posts');
     return (
-      <Container className="container">
-        
-        <Row>
-          <Col className="column-posts" sm="4">
-            <Card>
+
+
+    
+          <Col className="column-posts" sm="6">
+              <Card key={post.id}>
+
               <CardImg top width="auto" src={post.img_url} alt="" />
               <CardBody>
                 <CardTitle>
@@ -49,13 +52,20 @@ const Posts = (props) => {
               </CardBody>
             </Card>
           </Col>
-        </Row>
-        
-       
-        <Comments postID={post.id} comments={props.comments} deleteComment={props.deleteComment} showCommentModal={props.showCommentModal} />
-        <CreateComment postID={'http://localhost:8000/api/posts/' + post.id + '/'} addComment={props.addComment} />
-      </Container>
 
+        <Comments
+          postID={post.id}
+          comments={props.comments}
+          deleteComment={props.deleteComment}
+          
+          showCommentModal={props.showCommentModal}
+          closeAndEditComment={props.closeAndEditComment}
+          commentToEdit={props.commentToEdit}
+          handleCommentFormChange={props.handleCommentFormChange}
+           />
+
+
+        <CreateComment postID={'http://localhost:8000/api/posts/' + post.id + '/'} addComment={props.addComment} />
     )
   })
       
@@ -72,3 +82,4 @@ const Posts = (props) => {
 
 
 export default Posts;
+
