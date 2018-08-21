@@ -29,14 +29,16 @@ class CreateComment extends Component {
                 <div className="center-comments-form">
                 <form onSubmit={this.props.addComment.bind(this, this.state)}>
                     <FormGroup>
+                    
                         <label className="comment-date-label" >Date:
                         <br></br>
                         <input className="comment-date" type="text" name="date" onChange={this.updateComment} />
                         </label>
-                        
+                        <div className="center-textarea">
                         <label className="comment-body-label" >Comment:
-                        <textarea className="form-control comment-textarea" rows="6" type="textarea" name="body" onChange={this.updateComment} />
+                        <textarea className="form-control comment-textarea" rows="6" cols="100" type="textarea" name="body" onChange={this.updateComment} />
                         </label>
+                      </div>  
                     </FormGroup>
                     <FormGroup>
                         <label className="checkbox-robot">Please check box to prove you are not a Robot!
