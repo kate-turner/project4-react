@@ -262,8 +262,8 @@ class MainContainer extends Component {
       <Aux>
 
         <Navigation />
-        <h1 className="main-title"> Whatever Blog</h1>
-        <Carousel />
+       
+        <img className="home-image" src="https://i.imgur.com/N63zgcn.png" alt=""/>
 
         <Switch>
           <Route exact path="/" render={(props) => (
@@ -288,3 +288,4 @@ class MainContainer extends Component {
 
 
 export default MainContainer;
+{/* <h1 className="main-title"> Writer's Blog</h1> */}
