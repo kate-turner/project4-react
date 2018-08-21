@@ -37,7 +37,14 @@ const Posts = (props) => {
                   {post.body}
                 </CardText>
                 <button className="btn btn-danger btn-sm" onClick={props.deletePost.bind(null, post.id)}>Delete</button>
-                <EditPostModal closeAndEdit={props.closeAndEdit} handleFormChange={props.handleFormChange} postToEdit={props.postToEdit} showModal={props.showModal} />
+
+
+                <EditPostModal
+                  closeAndEdit={props.closeAndEdit}
+                  handleFormChange={props.handleFormChange} 
+                  postToEdit={post} 
+                  showModal={props.showModal} 
+                  />
                 
               </CardBody>
             </Card>

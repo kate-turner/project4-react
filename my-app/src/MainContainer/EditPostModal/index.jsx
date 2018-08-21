@@ -20,6 +20,7 @@ class EditPostModal extends React.Component {
   
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <Button color="danger" onClick={this.toggle}> Edit Post </Button>
@@ -27,37 +28,37 @@ class EditPostModal extends React.Component {
           <ModalHeader toggle={this.toggle}>Edit Post Modal</ModalHeader>
           <ModalBody>
              <form onSubmit={ async (e) =>
-              {
+              {   e.preventDefault()
                   this.toggle();
-                  await this.props.closeAndEdit(this.props.post)
+                  await this.props.closeAndEdit(this.props.postToEdit.id)
               }} >
              	<label>
              		Edit Date: 
              		<input type="text"
              				name="date"
              				onChange={this.props.handleFormChange}
-             				value={this.props.postToEdit.date} />
+             				placeholder={this.props.postToEdit.date} />
              	</label>
              	<label>
              		Edit Title:
              		<input type="text"
              			   name="title"
              			   onChange={this.props.handleFormChange}
-             			   value={this.props.postToEdit.title} />
+             			   placeholder={this.props.postToEdit.title} />
              	</label>
              	<label>
              		Edit Body:
              		<input type="text"
              			   name="body"
              			   onChange={this.props.handleFormChange}
-             			   value={this.props.postToEdit.body} />
+             			   placeholder={this.props.postToEdit.body} />
              	</label>
               <label>
                 Edit Image:
                 <input type="text"
                       name="img_url"
                       onChange={this.props.handleFormChange}
-                      value={this.props.postToEdit.img_url} />
+                      placeholder={this.props.postToEdit.img_url} />
               </label>
             <label>
               <input className="submit-button" type='Submit' />

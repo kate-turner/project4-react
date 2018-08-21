@@ -103,12 +103,12 @@ class MainContainer extends Component {
       postToEdit: postToEdit
     });
   }
-  closeAndEdit = async (e) => {
+  closeAndEdit = async (postId) => {
     console.log(this.state.postToEdit, ' this is this.state.postToEdit on closeAndEdit function');
-    e.preventDefault();
+    console.log(postId)
 
     try {
-      const editResponse = await fetch('http://localhost:8000/api/posts/' + this.state.editPostId + '/', {
+      const editResponse = await fetch('http://localhost:8000/api/posts/' + postId + '/', {
         method: 'PUT',
         body: JSON.stringify(this.state.postToEdit),
         headers: {
@@ -120,20 +120,17 @@ class MainContainer extends Component {
 
       const editedPostArray = this.state.posts.map((post) => {
 
-        if (post.id === this.state.editPostId) {
+        if (post.id === parseInt(postId)) {
 
-
-          post.date = editResponseJson.date;
-          post.title = editResponseJson.title;
-          post.body = editResponseJson.body;
-          post.imgUrl = editResponseJson.img_url;
+          console.log("FOUND THE ONE TO REPLACE")
+          return editResponseJson
         }
 
         return post
       });
 
       this.setState({
-        post: editedPostArray,
+        posts: editedPostArray,
         showEdit: false
       });
 
