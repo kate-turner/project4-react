@@ -20,7 +20,7 @@ const Posts = (props) => {
               <CardImg top width="auto" src={post.img_url} alt="" />
               <CardBody>
                 <CardTitle>
-                  <h3 className="blog-title">{post.title}</h3>
+                  <h3 className="blog-title"><a href="../PostShowPage/PostShowPage.jsx"></a>{post.title}</h3>
                 </CardTitle>
                 <CardSubtitle>
                   <div key={post.id}>
@@ -30,12 +30,13 @@ const Posts = (props) => {
                 <CardText className="blog-body">
                   {post.body}
                 </CardText>
+                <button className="btn btn-danger btn-sm" onClick={props.deletePost.bind(null, post.id)}>Delete</button>
+                <button className="btn btn-warning btn-sm" onClick={props.showModal.bind(null, post.id)}>Edit</button>  
               </CardBody>
             </Card>
           </Col>
         </Row>
-        <button onClick={props.deletePost.bind(null, post.id)}>Delete</button>
-        <button onClick={props.showModal.bind(null, post.id)}>Edit</button>
+        
       </Container>
 
     )
