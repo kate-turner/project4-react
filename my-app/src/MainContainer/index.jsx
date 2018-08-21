@@ -3,7 +3,6 @@ import Posts from './Posts';
 import Aux from '../hoc/Aux';
 import Navigation from '../Nav/Nav.jsx'
 import CreatePost from './CreatePost';
-import EditPost from './EditPost';
 import { Route, Switch, Link } from 'react-router-dom';
 
 import {
@@ -61,6 +60,7 @@ class MainContainer extends Component {
   }
   addPost = async (post, e) => {
     e.preventDefault();
+    console.log('this is post')
     try {
       const createdPost = await fetch('http://localhost:8000/api/posts/', {
         method: 'POST',
@@ -71,16 +71,13 @@ class MainContainer extends Component {
       });
 
       const createdPostJson = await createdPost.json();
-      if (createdPostJson.status === 200) {
-        this.setState({ posts: [...this.state.posts, createdPostJson] });
-      } else {
-        console.log(createdPostJson)
-      }
-    } catch (err) {
+      console.log(createdPostJson);
+      this.setState({posts: [...this.state.posts, createdPostJson]});
+    } catch(err) {
       console.log(err)
     }
   }
-
+  
   deletePost = async (id, e) => {
     console.log(id, ' this is id of the post in the delete route');
     e.preventDefault();
@@ -89,16 +86,11 @@ class MainContainer extends Component {
         method: 'DELETE',
       });
       console.log(deletePost, 'inside try');
-
-      if (deletePost.status === 204) {
-        this.setState({ posts: this.state.posts.filter((post, i) => post.id !== id) });
-      } else {
-        console.log('no deleting');
-      }
+      this.setState({ posts: this.state.posts.filter((post, i) => post.id !== id) });
     } catch (err) {
       console.log(err, ' error')
+      }
     }
-  }
 
 
   showModal = (id, e) => {
@@ -112,6 +104,7 @@ class MainContainer extends Component {
     });
   }
   closeAndEdit = async (e) => {
+    console.log(this.state.postToEdit, ' this is this.state.postToEdit on closeAndEdit function');
     e.preventDefault();
 
     try {
@@ -267,7 +260,17 @@ class MainContainer extends Component {
 
         <Switch>
           <Route exact path="/" render={(props) => (
-            <Posts posts={this.state.posts} deletePost={this.deletePost} showModal={this.showModal} comments={this.state.comments} addComment={this.addComment} deleteComment={this.deleteComment} showCommentModal={this.showCommentModal}/>
+            <Posts posts={this.state.posts} 
+            deletePost={this.deletePost} 
+            showModal={this.showModal}
+            closeAndEdit={this.closeAndEdit}
+            handleFormChange={this.handleFormChange}
+            postToEdit={this.state.postToEdit}
+
+            comments={this.state.comments} 
+            addComment={this.addComment} 
+            deleteComment={this.deleteComment} 
+            showCommentModal={this.showCommentModal}/>
           )} />
 
           <Route exact path="/new" render={(props) => (
@@ -276,9 +279,7 @@ class MainContainer extends Component {
 
         </Switch>
 
-        {this.state.showEdit ? <EditPost closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} postToEdit={this.state.postToEdit} /> : null}
         
-        {this.state.showCommentEdit ? <EditComment closeAndEditComment={this.closeAndEditComment} handleCommentFormChange={this.handleCommentFormChange} commentToEdit={this.state.commentToEdit} /> : null}
 
 
       </Aux>
