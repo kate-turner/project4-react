@@ -5,6 +5,7 @@ import {
 } from 'reactstrap';
 import CreateComment from '../Comments/AddComment';
 import Comments from '../Comments.js'
+import EditCommentModal from '../../EditCommentModal'
 
 
 
@@ -13,9 +14,9 @@ import Comments from '../Comments.js'
 const Posts = (props) => {
 
   const postList = props.posts.map((post, i) => {
-    console.log(post, ' post id')
+    // console.log(post, ' post id')
 
-    // console.log(props.comments[0], ' this is props comments in Posts');
+    console.log(props.comments[0], ' this is props comments in Posts');
     return (
       <Container className="container">
         
@@ -43,7 +44,18 @@ const Posts = (props) => {
         </Row>
         
 
-        <Comments postID={post.id} comments={props.comments} deleteComment={props.deleteComment} showCommentModal={props.showCommentModal} />
+        <Comments
+          postID={post.id}
+          comments={props.comments}
+          deleteComment={props.deleteComment}
+          
+          showCommentModal={props.showCommentModal}
+          closeAndEditComment={props.closeAndEditComment}
+          commentToEdit={props.commentToEdit}
+          handleCommentFormChange={props.handleCommentFormChange}
+           />
+
+
         <CreateComment postID={'http://localhost:8000/api/posts/' + post.id + '/'} addComment={props.addComment} />
       </Container>
 

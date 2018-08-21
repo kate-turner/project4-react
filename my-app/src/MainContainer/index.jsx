@@ -42,12 +42,12 @@ class MainContainer extends Component {
     this.getPosts().then((posts) => {
       this.setState({ posts: posts })
     }).catch((err) => {
-      console.log(err);
+      // console.log(err);
     });
     this.getComments().then((comments) => {
       this.setState({ comments: comments })
     }).catch((err) => {
-      console.log(err);
+      // console.log(err);
     })
   }
 
@@ -74,29 +74,29 @@ class MainContainer extends Component {
       if (createdPostJson.status === 200) {
         this.setState({ posts: [...this.state.posts, createdPostJson] });
       } else {
-        console.log(createdPostJson)
+        // console.log(createdPostJson)
       }
     } catch (err) {
-      console.log(err)
+      // console.log(err)
     }
   }
 
   deletePost = async (id, e) => {
-    console.log(id, ' this is id of the post in the delete route');
+    // console.log(id, ' this is id of the post in the delete route');
     e.preventDefault();
     try {
       const deletePost = await fetch('http://localhost:8000/api/posts/' + id + '/', {
         method: 'DELETE',
       });
-      console.log(deletePost, 'inside try');
+      // console.log(deletePost, 'inside try');
 
       if (deletePost.status === 204) {
         this.setState({ posts: this.state.posts.filter((post, i) => post.id !== id) });
       } else {
-        console.log('no deleting');
+        // console.log('no deleting');
       }
     } catch (err) {
-      console.log(err, ' error')
+      // console.log(err, ' error')
     }
   }
 
@@ -104,7 +104,7 @@ class MainContainer extends Component {
   showModal = (id, e) => {
     // i comes before e, when called with bind
     const postToEdit = this.state.posts.find((post) => post.id === id)
-    console.log(postToEdit, ' postToEdit')
+    // console.log(postToEdit, ' postToEdit')
     this.setState({
       showEdit: true,
       editPostId: id,
@@ -147,7 +147,7 @@ class MainContainer extends Component {
 
 
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
 
   }
@@ -163,8 +163,8 @@ class MainContainer extends Component {
   getComments = async () => {
     const comments = await fetch('http://localhost:8000/api/comments/');
     const commentsJson = await comments.json();
-    console.log(commentsJson, ' this is commentsJson');
-    console.log(comments, ' this is comments');
+    // console.log(commentsJson, ' this is commentsJson');
+    // console.log(comments, ' this is comments');
     return commentsJson;
   }
 
@@ -183,34 +183,34 @@ class MainContainer extends Component {
       const createdCommentJson = await createdComment.json();
       this.setState({ comments: [...this.state.comments, createdCommentJson] });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   }
 
   deleteComment = async (id, e) => {
     e.preventDefault();
-    console.log('deleteComment function is being called, this is the id: ', id);
+    // console.log('deleteComment function is being called, this is the id: ', id);
     try {
       const deleteComment = await fetch('http://localhost:8000/api/comments/' + id + '/', {
         method: 'DELETE'
       });
-      console.log(deleteComment, ' this is delete comment');
+      // console.log(deleteComment, ' this is delete comment');
 
       if (deleteComment.status === 204) {
         this.setState({ comments: this.state.comments.filter((comment, i) => comment.id !== id) });
       } else {
-        console.log('error in delete comment');
+        // console.log('error in delete comment');
       }
     } catch (err) {
-      console.log(err, ' this is error caught when deleted comment');
+      // console.log(err, ' this is error caught when deleted comment');
     }
   }
 
-  showCommentModal = (id, e) => {
-    console.log('showCommentModal function is being called, this is the id: ', id);
+  showCommentModal = (id) => {
+    // console.log('showCommentModal function is being called, this is the id: ', id);
     const commentToEdit = this.state.comments.find((comment) => comment.id === id);
-    console.log(commentToEdit, ' this is commentToEdit');
-    console.log(id, ' this is id');
+    console.log(commentToEdit, ' this is commentToEdit XxXxXxXxXxXxXx +++++++++++========||||||');
+    // console.log(id, ' this is id');
     this.setState({
       showCommentEdit: true,
       editCommentId: id,
@@ -218,13 +218,23 @@ class MainContainer extends Component {
     });
   }
 
-  closeAndEditComment = async (e) => {
-    console.log('close and edit comment is being called');
-    e.preventDefault();
+  closeAndEditComment = async (commentId, post) => {
+    console.log(this.state.commentToEdit + "THIS IS THE COMMENT TO EDIT ++++++++++")
+    console.log(commentId);
+    const data = {
+      ...this.state.commentToEdit,
+      post: post,
+      id: commentId
+    }
+    console.log(data)
+    // e.preventDefault();
     try {
-      const editComment = await fetch('http://localhost:8000/api/comments/' + this.state.editCommentId + '/', {
+      const editComment = await fetch('http://localhost:8000/api/comments/' + commentId + '/', {
         method: 'PUT',
-        body: JSON.stringify(this.state.commentToEdit),
+        body: JSON.stringify({
+          ...this.state.commentToEdit,
+          "post":post
+        }),
         headers: {
           'Content-Type': 'application/json'
         }
@@ -232,15 +242,18 @@ class MainContainer extends Component {
 
       const editCommentJson = await editComment.json();
       const editedCommentArray = this.state.comments.map((comment) => {
-        if (comment.id === this.state.editCommentId) {
-          comment.comment = editCommentJson.comment;
+        console.log(comment)
+        if (comment.id === parseInt(commentId)) {
+          console.log("FOUND THE ONE TO REPLACE")
+          return editCommentJson;
         }
         return comment;
       });
-      console.log(editCommentJson, ' this is editCommentJson');
+      // console.log(editCommentJson, ' this is editCommentJson');
+      console.log("SHOULDA REPLACED ID WITH " + commentId)
       console.log(editedCommentArray, ' this is editedCommentArray');
       this.setState({
-        comment: editedCommentArray,
+        comments: editedCommentArray,
         showCommentEdit: false,
       });
     } catch (err) {
@@ -257,7 +270,7 @@ class MainContainer extends Component {
   // ========================= Return/Display =========================
 
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <Aux>
 
@@ -267,8 +280,33 @@ class MainContainer extends Component {
 
         <Switch>
           <Route exact path="/" render={(props) => (
-            <Posts posts={this.state.posts} deletePost={this.deletePost} showModal={this.showModal} comments={this.state.comments} addComment={this.addComment} deleteComment={this.deleteComment} showCommentModal={this.showCommentModal}/>
+
+
+
+            <Posts posts={this.state.posts}
+                   deletePost={this.deletePost}
+                   showModal={this.showModal}
+                   ////////////passing props for edit POST ///////////
+                   showEdit={this.state.showEdit}
+                   comments={this.state.comments}
+                   addComment={this.addComment} 
+                   deleteComment={this.deleteComment} 
+                   closeAndEdit={this.closeAndEdit} 
+                   handleFormChange={this.handleFormChange} 
+                   postToEdit={this.state.postToEdit}
+                   ///////////passing props for  edit COMMENT ////////
+                   showCommentEdit={this.state.showCommentEdit}
+                   closeAndEditComment={this.closeAndEditComment}
+                   handleCommentFormChange={this.handleCommentFormChange} 
+                   commentToEdit={this.state.commentToEdit}
+                   showCommentModal={this.showCommentModal}
+            />
+
           )} />
+
+
+
+
 
           <Route exact path="/new" render={(props) => (
             <CreatePost {...props} addPost={this.addPost} />
@@ -276,11 +314,11 @@ class MainContainer extends Component {
 
         </Switch>
 
-        {this.state.showEdit ? <EditPost closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} postToEdit={this.state.postToEdit} /> : null}
+{/*        {this.state.showEdit ? <EditPost closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} postToEdit={this.state.postToEdit} /> : null}
         
         {this.state.showCommentEdit ? <EditComment closeAndEditComment={this.closeAndEditComment} handleCommentFormChange={this.handleCommentFormChange} commentToEdit={this.state.commentToEdit} /> : null}
 
-
+*/}
       </Aux>
     );
   }
