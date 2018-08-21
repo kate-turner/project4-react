@@ -207,6 +207,7 @@ class MainContainer extends Component {
   }
 
   showCommentModal = (id, e) => {
+    console.log('showCommentModal function is being called, this is the id: ', id);
     const commentToEdit = this.state.comments.find((comment) => comment.id === id);
     console.log(commentToEdit, ' this is commentToEdit');
     console.log(id, ' this is id');
@@ -218,10 +219,10 @@ class MainContainer extends Component {
   }
 
   closeAndEditComment = async (e) => {
-    console.log('close and edit comment');
+    console.log('close and edit comment is being called');
     e.preventDefault();
     try {
-      const editComment = await fetch('http://localhost:8000/api/comments/' + this.state.editCommentId, {
+      const editComment = await fetch('http://localhost:8000/api/comments/' + this.state.editCommentId + '/', {
         method: 'PUT',
         body: JSON.stringify(this.state.commentToEdit),
         headers: {
