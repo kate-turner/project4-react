@@ -12,6 +12,7 @@ import {
 } from 'reactstrap';
 import '../App.css'
 import Carousel from '../Carousel/Carousel';
+import EditComment from './Comments/EditComment';
 
 class MainContainer extends Component {
   constructor() {
@@ -168,6 +169,7 @@ class MainContainer extends Component {
   }
 
   addComment = async (comment, e) => {
+    console.log(comment, ' this is comment');
     e.preventDefault();
 
     try {
@@ -189,7 +191,7 @@ class MainContainer extends Component {
     e.preventDefault();
     console.log('deleteComment function is being called, this is the id: ', id);
     try {
-      const deleteComment = await fetch('http://localhost:8000/api/commments/' + id, {
+      const deleteComment = await fetch('http://localhost:8000/api/comments/' + id + '/', {
         method: 'DELETE'
       });
       console.log(deleteComment, ' this is delete comment');
@@ -200,11 +202,12 @@ class MainContainer extends Component {
         console.log('error in delete comment');
       }
     } catch (err) {
-      console.log(err);
+      console.log(err, ' this is error caught when deleted comment');
     }
   }
 
   showCommentModal = (id, e) => {
+    console.log('showCommentModal function is being called, this is the id: ', id);
     const commentToEdit = this.state.comments.find((comment) => comment.id === id);
     console.log(commentToEdit, ' this is commentToEdit');
     console.log(id, ' this is id');
@@ -216,10 +219,10 @@ class MainContainer extends Component {
   }
 
   closeAndEditComment = async (e) => {
-    console.log('close and edit comment');
+    console.log('close and edit comment is being called');
     e.preventDefault();
     try {
-      const editComment = await fetch('http://localhost:8000/api/comments/' + this.state.editCommentId, {
+      const editComment = await fetch('http://localhost:8000/api/comments/' + this.state.editCommentId + '/', {
         method: 'PUT',
         body: JSON.stringify(this.state.commentToEdit),
         headers: {
@@ -264,7 +267,7 @@ class MainContainer extends Component {
 
         <Switch>
           <Route exact path="/" render={(props) => (
-            <Posts posts={this.state.posts} deletePost={this.deletePost} showModal={this.showModal} />
+            <Posts posts={this.state.posts} deletePost={this.deletePost} showModal={this.showModal} comments={this.state.comments} addComment={this.addComment} deleteComment={this.deleteComment} showCommentModal={this.showCommentModal}/>
           )} />
 
           <Route exact path="/new" render={(props) => (
@@ -274,6 +277,9 @@ class MainContainer extends Component {
         </Switch>
 
         {this.state.showEdit ? <EditPost closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} postToEdit={this.state.postToEdit} /> : null}
+        
+        {this.state.showCommentEdit ? <EditComment closeAndEditComment={this.closeAndEditComment} handleCommentFormChange={this.handleCommentFormChange} commentToEdit={this.state.commentToEdit} /> : null}
+
 
       </Aux>
     );

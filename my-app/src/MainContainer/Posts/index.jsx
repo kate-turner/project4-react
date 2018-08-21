@@ -3,6 +3,8 @@ import {
   Container, Row, Col, Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
+import CreateComment from '../Comments/AddComment';
+import Comments from '../Comments.js'
 
 
 
@@ -12,8 +14,11 @@ const Posts = (props) => {
 
   const postList = props.posts.map((post, i) => {
     console.log(post, ' post id')
+
+    // console.log(props.comments[0], ' this is props comments in Posts');
     return (
       <Container className="container">
+        
         <Row>
           <Col className="column-posts" sm="4">
             <Card>
@@ -37,6 +42,9 @@ const Posts = (props) => {
           </Col>
         </Row>
         
+
+        <Comments postID={post.id} comments={props.comments} deleteComment={props.deleteComment} showCommentModal={props.showCommentModal} />
+        <CreateComment postID={'http://localhost:8000/api/posts/' + post.id + '/'} addComment={props.addComment} />
       </Container>
 
     )
