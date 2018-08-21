@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Container, Row, Col, Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button
+  CardTitle, CardSubtitle, Button, CardDeck
 } from 'reactstrap';
 import CreateComment from '../Comments/AddComment';
 
@@ -21,8 +21,6 @@ const Posts = (props) => {
     console.log(props.comments[0], ' this is props comments in Posts');
     return (
 
-
-    
           <Col className="column-posts" sm="6">
               <Card key={post.id}>
 
@@ -47,35 +45,41 @@ const Posts = (props) => {
                   handleFormChange={props.handleFormChange} 
                   postToEdit={post} 
                   showModal={props.showModal} 
-                  />
+                />
+
+                <Comments
+                  postID={post.id}
+                  comments={props.comments}
+                  deleteComment={props.deleteComment}
+                  
+                  showCommentModal={props.showCommentModal}
+                  closeAndEditComment={props.closeAndEditComment}
+                  commentToEdit={props.commentToEdit}
+                  handleCommentFormChange={props.handleCommentFormChange}
+                />
+
+
+                <CreateComment postID={'http://localhost:8000/api/posts/' + post.id + '/'} addComment={props.addComment} />
                 
               </CardBody>
             </Card>
           </Col>
 
-        <Comments
-          postID={post.id}
-          comments={props.comments}
-          deleteComment={props.deleteComment}
-          
-          showCommentModal={props.showCommentModal}
-          closeAndEditComment={props.closeAndEditComment}
-          commentToEdit={props.commentToEdit}
-          handleCommentFormChange={props.handleCommentFormChange}
-           />
 
-
-        <CreateComment postID={'http://localhost:8000/api/posts/' + post.id + '/'} addComment={props.addComment} />
     )
-  })
+  });
       
       
       
     return (
+      <Container className="contaner">
+        <Row>
+          <CardDeck>
+            {postList}
+          </CardDeck>
+        </Row>
+      </Container>
 
-    <ul>
-      {postList}
-    </ul>
   )
 
 };
