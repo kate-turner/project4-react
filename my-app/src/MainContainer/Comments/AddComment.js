@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 class CreateComment extends Component {
     constructor() {
@@ -20,6 +21,7 @@ class CreateComment extends Component {
         return (
             <div>
                 <form onSubmit={this.props.addComment.bind(this, this.state)}>
+                    
                     <input type="text" name="date" onChange={this.updateComment} placeholder="add date" />
                     <input type="text" name="body" onChange={this.updateComment} placeholder="add comment" />
                     <input type="checkbox" name="post" value={this.props.postID} onChange={this.updateComment} />
