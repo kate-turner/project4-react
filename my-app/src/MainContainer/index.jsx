@@ -3,7 +3,7 @@ import Posts from './Posts';
 import Aux from '../hoc/Aux';
 import Navigation from '../Nav/Nav.jsx'
 import CreatePost from './CreatePost';
-import EditPost from './EditPost';
+// import EditPost from './EditPost';
 import { Route, Switch, Link } from 'react-router-dom';
 
 import {
@@ -326,4 +326,3 @@ class MainContainer extends Component {
 
 
 export default MainContainer;
-{/* <h1 className="main-title"> Writer's Blog</h1> */}

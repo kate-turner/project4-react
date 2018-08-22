@@ -25,7 +25,7 @@ class CreateComment extends Component {
                 <hr className="my-2" />
                 <br></br>
 
-                <h3 className="comment-h3">Leave a Comment</h3>
+                <h4 className="comment-h3">Leave a Comment</h4>
 
                 <div className="center-comments-form">
                 <form onSubmit={this.props.addComment.bind(this, this.state)}>
@@ -42,7 +42,7 @@ class CreateComment extends Component {
                       </div>  
                     </FormGroup>
                     <FormGroup>
-                        <label className="checkbox-robot">Please check box to prove you are not a Robot!
+                        <label className="checkbox-robot">Check box if not a Robot!
                         <input className="checkbox" type="checkbox" name="post" value={this.props.postID} onChange={this.updateComment} />
                         </label>
                     </FormGroup>    

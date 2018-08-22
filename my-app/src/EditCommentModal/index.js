@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup } from 'reactstrap';
 
 class EditCommentModal extends React.Component {
   constructor(props) {
@@ -28,9 +28,9 @@ class EditCommentModal extends React.Component {
 
     return (
       <div>
-        <Button color="danger" onClick={this.toggle}> EDIT COMMENT </Button>
+        <Button color="warning" onClick={this.toggle}> Edit Comment</Button>
 
-{/*                <Button 
+        {/*                <Button 
               color="danger"
               onClick={ async (e) => 
                       {
@@ -41,41 +41,46 @@ class EditCommentModal extends React.Component {
                       }} >EDIT COMMENT </Button>*/}
 
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Edit Comment Modal</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Edit Comment</ModalHeader>
           <ModalBody>
 
-              <form onSubmit={ async (e) => 
-                {
-                  e.preventDefault()
-                  console.log(this.props)
-                        this.toggle();
-                       // await   this.props.showCommentModal(this.props.commentID)
-                       await   this.props.closeAndEditComment(this.props.commentID, this.props.commentToEdit.post)
-                }} >
+            <form onSubmit={async (e) => {
+              e.preventDefault()
+              console.log(this.props)
+              this.toggle();
+              // await   this.props.showCommentModal(this.props.commentID)
+              await this.props.closeAndEditComment(this.props.commentID, this.props.commentToEdit.post)
+            }} >
 
+              <FormGroup>
                 <label>
-                    Edit Date:
+                  Edit Date:
                     <input type="text"
-                           name="date"
-                           onChange={this.props.handleCommentFormChange}
-                           placeholder={this.props.commentToEdit.date} />
+                    name="date"
+                    onChange={this.props.handleCommentFormChange}
+                    placeholder={this.props.commentToEdit.date} />
                 </label>
+              </FormGroup>
+              <FormGroup>
                 <label>
-                    Edit Comment:
-                    <input type="text"
-                           name="body"
-                           onChange={this.props.handleCommentFormChange}
-                           placeholder={this.props.commentToEdit.body} />
+                  Edit Comment:
+                  <textarea className="form-control comment-textarea" rows="6" cols="75" type="textarea"
+                    name="body"
+                    onChange={this.props.handleCommentFormChange}
+                    placeholder={this.props.commentToEdit.body} />
                 </label>
-                <input type="hidden" name="post" value={this.props.post} onChange={this.updateComment} />
-                <input type="submit" value="Edit Comment" />
+              </FormGroup>
+
+              <input type="hidden" name="post" value={this.props.post} onChange={this.updateComment} />
+              <button className="btn btn-primary btn-sm edit-comment-btn" type="submit" value="Edit Comment">Submit</button>
+
             </form>
 
 
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}> this button just closes the modal</Button>{' '}
-            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+
+            <Button className="btn btn-primary btn-sm close-comment-btn" onClick={this.toggle}>Close</Button>
           </ModalFooter>
         </Modal>
       </div>
