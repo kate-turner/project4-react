@@ -37,7 +37,7 @@ class CreateComment extends Component {
                         </label>
                         <div className="center-textarea">
                         <label className="comment-body-label" >Comment:
-                        <textarea className="form-control comment-textarea" rows="6" cols="60" type="textarea" name="body" onChange={this.updateComment} />
+                        <textarea className="form-control comment-textarea" rows="6" cols="48" type="textarea" name="body" onChange={this.updateComment} />
                         </label>
                       </div>  
                     </FormGroup>
