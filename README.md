@@ -32,19 +32,22 @@
 -To access you can clone the React repo as well as Django at https://github.com/amandamolde/project-4-django
 -To start React, first NPM install and then NPM start  
 -The React app is hosted at http://localhost:3000/
+
 To start Django, make sure you are in your virtual env, pip install all apps required in the requirements.TXT file, 
+```
 $ psql
 > CREATE DATABASE <insert database name>;
 > CREATE USER <insert username> WITH PASSWORD <'insert password'>;
 GRANT ALL PRIVILEGES ON DATABASE <database name> TO <username>;
 > \q
 $ python manage.py runserver
+```
 
 
 ## IMAGE RESOURCES
 -Overall Design
-![all users](https://drive.google.com/file/d/1CupuENUfbepQDHkbudBIcEjq_KotPicZ/view)
+![overall_design](https://lh4.googleusercontent.com/LIH86zD35jhNDXw4Kh5mJmIhdHvrGRDEdRRz3lh9vK6TydNq4V4BMc_Tq75rtDF4m2uztd3mmsLpgyPL9PjA=w1290-h661-rw)
 -API Routes
-![all users](https://drive.google.com/file/d/1xvvZnwldIPiuQOW7lt4SAwYLU3er9Zou/view)
+![API_Routing](https://lh5.googleusercontent.com/ZI40gRWNmuAmIfdDFl_JDHNBModdoQN04DkdJC_AIYS_f4TTj9Hr68JxZ83_hT4__FxOgWTVJgz_7ccWl877=w1290-h661-rw)
 -Final Design Whiteboard
-![all users](https://drive.google.com/file/d/1X75r1F2T09IBdKqeL65fzYtHkc3MbhSw/view)
+![FrontEndDesign](https://lh5.googleusercontent.com/SIOWEA8OUi8SdSOLk_G0a6oMVo2UJ5KC0ip-uiLQkLbXodr8wIE7jyQI4Ab4Mw0VufDQvsVDv9f49ID80LgS=w1290-h661-rw)
