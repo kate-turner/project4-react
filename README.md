@@ -3,12 +3,6 @@ WRITERS BLOG
 
 WIREFRAMES AND USERS STORIES
 -User Stories: User can create, edit, and delete a post.  A user can also create, edit and delete a comment tied to a post.  User has the ability to view all posts and all comments.  A user can comment on all posts.
-------image of our first day map of the project organization
-![alt text](https://drive.google.com/file/d/1CupuENUfbepQDHkbudBIcEjq_KotPicZ/view?usp=sharing)
--------image RESTful Routes
-![alt text](https://drive.google.com/file/d/1xvvZnwldIPiuQOW7lt4SAwYLU3er9Zou/view?usp=sharing)
--------image of yesterday organization of front end design
-![alt text](https://drive.google.com/file/d/1X75r1F2T09IBdKqeL65fzYtHkc3MbhSw/view?usp=sharing)
 
 TECHNOLOGIES, APIS AND MODULES USED
 -React
