@@ -56,7 +56,7 @@ class CreatePost extends Component {
             <hr className="my-2" />
 
             <FormGroup>
-              <input className="submit-button" type='Submit' />
+              <button className="btn btn-primary btn-sm submit-post-btn" type='Submit'>Submit</button>
             </FormGroup>
           </form>
         </Container>

@@ -18,13 +18,15 @@ const Comments = (props) => {
                 <div key={comment.id}>
                     <ListGroup>
                         <ListGroupItem>
-                            <span>{comment.date}</span><br />
-                            <span>{comment.body}</span><br />
-                            <button className="btn btn-danger btn-sm" onClick={props.deleteComment.bind(null, comment.id)}>Delete</button>
-                            {/*<button onClick={props.showCommentModal.bind(null, comment.id)}>Edit</button>*/}
-                        </ListGroupItem>
-                    </ListGroup>
-
+                            <span>{comment.date}</span>
+                            <br></br>
+                            <span>{comment.body}</span>
+                            <br></br>
+                            
+                        
+                    
+                    <div className="comment-edit-delete-btns">
+                    <br></br>
                     <EditCommentModal
                         {...props}
                         commentID={comment.id}
@@ -33,6 +35,12 @@ const Comments = (props) => {
                         commentToEdit={comment}
                         handleCommentFormChange={props.handleCommentFormChange}
                     />
+                    <button className="btn btn-danger btn-sm" onClick={props.deleteComment.bind(null, comment.id)}>Delete Comment</button>
+                            {/*<button onClick={props.showCommentModal.bind(null, comment.id)}>Edit</button>*/}
+                    </div>
+                    </ListGroupItem>
+                </ListGroup>
+                
                 </div>
             )
         }

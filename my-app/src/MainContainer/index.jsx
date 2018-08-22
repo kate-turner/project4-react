@@ -10,7 +10,7 @@ import {
   Container, Row, Col, Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
-import '../App.css'
+import '../App.css';
 import Carousel from '../Carousel/Carousel';
 import EditComment from './Comments/EditComment';
 

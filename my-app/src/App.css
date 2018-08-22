@@ -18,6 +18,9 @@
 .container {
   padding-top: 60px;
 }
+.card-deck {
+  margin-top: 25px;
+}
 .column-posts {
   max-height: 40%;
 }
@@ -40,19 +43,28 @@
   margin-top: 0px;
   padding: 0px;
 }
+/* .comment-edit-delete-btns {
+  text-align: center;
+} */
 .delete-btn{
   margin-right: 10px;
 }
-.center-btns {
+/* .center-btns {
   text-align: center;
-}
+} */
 .submit-btn {
   margin-right: 10px;
 }
 .center-comments-form {
-  text-align: center;
+  margin-left: 30px;
 }
-.delete-comment-btn {
+.edit-comment-btn {
+  margin-right: 10px;
+}
+/* .center-post-btns {
+  text-align: center;
+} */
+.edit-post-btn {
   margin-right: 10px;
 }
 .comment-h3 {
@@ -66,7 +78,7 @@
   font-family: 'News Cycle', sans-serif;
 }
 .checkbox-robot {
-  text-align: center;
+  /* text-align: center; */
   font-family: 'Courier New', Courier, monospace;
 }
 /* .scroll {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup } from 'reactstrap';
 
 class EditPostModal extends React.Component {
   constructor(props) {
@@ -17,58 +17,62 @@ class EditPostModal extends React.Component {
     });
   }
 
-  
+
 
   render() {
     console.log(this.props)
     return (
-      <div>
-        <Button color="danger" onClick={this.toggle}> Edit Post </Button>
+      <span>
+        <button className="btn btn-warning btn-sm edit-post-btn" onClick={this.toggle}> Edit Post </button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Edit Post Modal</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Edit Blog Post</ModalHeader>
           <ModalBody>
-             <form onSubmit={ async (e) =>
-              {   e.preventDefault()
-                  this.toggle();
-                  await this.props.closeAndEdit(this.props.postToEdit.id)
-              }} >
-             	<label>
-             		Edit Date: 
+            <form onSubmit={async (e) => {
+              e.preventDefault()
+              this.toggle();
+              await this.props.closeAndEdit(this.props.postToEdit.id)
+            }} >
+              <FormGroup>
+                <label>
+                  Edit Date:
              		<input type="text"
-             				name="date"
-             				onChange={this.props.handleFormChange}
-             				placeholder={this.props.postToEdit.date} />
-             	</label>
-             	<label>
-             		Edit Title:
+                    name="date"
+                    onChange={this.props.handleFormChange}
+                    placeholder={this.props.postToEdit.date} />
+                </label>
+              </FormGroup>
+              <FormGroup>
+                <label>
+                  Edit Title:
              		<input type="text"
-             			   name="title"
-             			   onChange={this.props.handleFormChange}
-             			   placeholder={this.props.postToEdit.title} />
-             	</label>
-             	<label>
-             		Edit Body:
-             		<input type="text"
-             			   name="body"
-             			   onChange={this.props.handleFormChange}
-             			   placeholder={this.props.postToEdit.body} />
-             	</label>
-              <label>
-                Edit Image:
+                    name="title"
+                    onChange={this.props.handleFormChange}
+                    placeholder={this.props.postToEdit.title} />
+                </label>
+              </FormGroup>
+              <FormGroup>
+                <label>
+                  Edit Body:
+                <textarea className="form-control post-edit-textarea" rows="6" cols="75" type="textarea"
+                    name="body"
+                    onChange={this.props.handleFormChange}
+                    placeholder={this.props.postToEdit.body} />
+                </label>
+              </FormGroup>
+              <FormGroup>
+                <label>
+                  Edit Image:
                 <input type="text"
-                      name="img_url"
-                      onChange={this.props.handleFormChange}
-                      placeholder={this.props.postToEdit.img_url} />
-              </label>
-            <label>
-              <input className="submit-button" type='Submit' />
-              </label>
-            
+                    name="img_url"
+                    onChange={this.props.handleFormChange}
+                    placeholder={this.props.postToEdit.img_url} />
+                </label>
+              </FormGroup>
+              <button className="btn btn-primary btn-sm submit-edit-post-btn" type='Submit'>Submit</button>
             </form>
-
           </ModalBody>
         </Modal>
-      </div>
+      </span>
     );
   }
 }

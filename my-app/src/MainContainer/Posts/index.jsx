@@ -24,7 +24,7 @@ const Posts = (props) => {
 
 
       <Col className="column-posts" sm="6">
-        <Card key={post.id}>
+        <Card className="card-deck" key={post.id}>
 
           <CardImg top width="auto" src={post.img_url} alt="" />
           <CardBody>
@@ -39,20 +39,19 @@ const Posts = (props) => {
             <CardText className="blog-body">
               {post.body}
             </CardText>
-            <div className="center-btns">
-              <button className="btn btn-danger btn-sm delete-btn" onClick={props.deletePost.bind(null, post.id)}>Delete</button>
-              <button className="btn btn-warning btn-sm" onClick={props.showModal.bind(null, post.id)}>Edit</button>
-            </div>
+            <span className="center-post-btns">
+            <EditPostModal
+              closeAndEdit={props.closeAndEdit}
+              handleFormChange={props.handleFormChange}
+              postToEdit={post}
+              showModal={props.showModal}
+            />
+            
+              <button className="btn btn-danger btn-sm delete-btn" onClick={props.deletePost.bind(null, post.id)}>Delete Post</button>
+            </span>
           </CardBody>
-
           <CreateComment postID={'http://localhost:8000/api/posts/' + post.id + '/'} addComment={props.addComment} />
 
-          <EditPostModal
-            closeAndEdit={props.closeAndEdit}
-            handleFormChange={props.handleFormChange}
-            postToEdit={post}
-            showModal={props.showModal}
-          />
           <Comments
             postID={post.id}
             comments={props.comments}
@@ -71,7 +70,7 @@ const Posts = (props) => {
   return (
     <Container className="container">
       <Row>
-        <CardDeck>
+        <CardDeck className="card-deck">
           {postList}
         </CardDeck>
       </Row>
