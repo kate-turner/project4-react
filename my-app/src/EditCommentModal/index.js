@@ -27,8 +27,8 @@ class EditCommentModal extends React.Component {
     console.log(JSON.stringify(this.props.commentToEdit) + "LOOK AT THESE FUCKING PROPS YO")
 
     return (
-      <div>
-        <Button color="warning" onClick={this.toggle}> Edit Comment</Button>
+      <span>
+        <button className="btn btn-warning btn-sm edit-comment-btn" onClick={this.toggle}> Edit Comment</button>
 
         {/*                <Button 
               color="danger"
@@ -51,7 +51,6 @@ class EditCommentModal extends React.Component {
               // await   this.props.showCommentModal(this.props.commentID)
               await this.props.closeAndEditComment(this.props.commentID, this.props.commentToEdit.post)
             }} >
-
               <FormGroup>
                 <label>
                   Edit Date:
@@ -64,26 +63,18 @@ class EditCommentModal extends React.Component {
               <FormGroup>
                 <label>
                   Edit Comment:
-                  <textarea className="form-control comment-textarea" rows="6" cols="75" type="textarea"
+                  <textarea className="form-control comment-textarea" rows="6" cols="60" type="textarea"
                     name="body"
                     onChange={this.props.handleCommentFormChange}
                     placeholder={this.props.commentToEdit.body} />
                 </label>
               </FormGroup>
-
               <input type="hidden" name="post" value={this.props.post} onChange={this.updateComment} />
               <button className="btn btn-primary btn-sm edit-comment-btn" type="submit" value="Edit Comment">Submit</button>
-
             </form>
-
-
           </ModalBody>
-          <ModalFooter>
-
-            <Button className="btn btn-primary btn-sm close-comment-btn" onClick={this.toggle}>Close</Button>
-          </ModalFooter>
         </Modal>
-      </div>
+      </span>
     );
   }
 }

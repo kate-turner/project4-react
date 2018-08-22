@@ -37,7 +37,7 @@ class CreateComment extends Component {
                         </label>
                         <div className="center-textarea">
                         <label className="comment-body-label" >Comment:
-                        <textarea className="form-control comment-textarea" rows="6" cols="100" type="textarea" name="body" onChange={this.updateComment} />
+                        <textarea className="form-control comment-textarea" rows="6" cols="60" type="textarea" name="body" onChange={this.updateComment} />
                         </label>
                       </div>  
                     </FormGroup>
@@ -47,17 +47,16 @@ class CreateComment extends Component {
                         </label>
                     </FormGroup>    
                     <FormGroup>
-                        <div className="center-btns">
+                        <span className="center-new-comment-btns">
                         <button className="btn btn-primary btn-sm submit-btn" type="submit" value="Comment">Submit</button>
                         <button className="btn btn-primary btn-sm reset-btn" type="reset">Reset Form</button>
-                        </div>
+                        </span>
                     </FormGroup>
                 
                 </form>
                 </div>
                 <br></br>
-                <hr className="my-2" />
-                <br></br>
+                
 
             </div>
         )
