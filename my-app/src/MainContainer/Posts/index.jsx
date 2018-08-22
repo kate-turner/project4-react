@@ -1,11 +1,14 @@
 import React from 'react';
 import {
   Container, Row, Col, Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button
+  CardTitle, CardSubtitle, Button, CardDeck
 } from 'reactstrap';
 import CreateComment from '../Comments/AddComment';
-import Comments from '../Comments.js'
+
+import Comments from '../Comments.js';
+import EditPostModal from '../EditPostModal';
 import EditCommentModal from '../../EditCommentModal'
+
 
 
 
@@ -37,13 +40,19 @@ const Posts = (props) => {
               {post.body}
             </CardText>
             <div className="center-btns">
-            <button className="btn btn-danger btn-sm delete-btn" onClick={props.deletePost.bind(null, post.id)}>Delete</button>
-            <button className="btn btn-warning btn-sm" onClick={props.showModal.bind(null, post.id)}>Edit</button>
+              <button className="btn btn-danger btn-sm delete-btn" onClick={props.deletePost.bind(null, post.id)}>Delete</button>
+              <button className="btn btn-warning btn-sm" onClick={props.showModal.bind(null, post.id)}>Edit</button>
             </div>
           </CardBody>
 
           <CreateComment postID={'http://localhost:8000/api/posts/' + post.id + '/'} addComment={props.addComment} />
 
+          <EditPostModal
+            closeAndEdit={props.closeAndEdit}
+            handleFormChange={props.handleFormChange}
+            postToEdit={post}
+            showModal={props.showModal}
+          />
           <Comments
             postID={post.id}
             comments={props.comments}
@@ -54,25 +63,19 @@ const Posts = (props) => {
             commentToEdit={props.commentToEdit}
             handleCommentFormChange={props.handleCommentFormChange}
           />
-
-
-
         </Card>
       </Col>
     )
   })
 
-
-
   return (
-
-    <div>
-      <Container className="container">
-        <Row>
+    <Container className="container">
+      <Row>
+        <CardDeck>
           {postList}
-        </Row>
-      </Container>
-    </div>
+        </CardDeck>
+      </Row>
+    </Container>
   )
 
 };

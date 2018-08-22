@@ -61,6 +61,7 @@ class MainContainer extends Component {
   }
   addPost = async (post, e) => {
     e.preventDefault();
+    console.log('this is post')
     try {
       const createdPost = await fetch('http://localhost:8000/api/posts/', {
         method: 'POST',
@@ -71,16 +72,15 @@ class MainContainer extends Component {
       });
 
       const createdPostJson = await createdPost.json();
-      if (createdPostJson.status === 200) {
-        this.setState({ posts: [...this.state.posts, createdPostJson] });
-      } else {
-        // console.log(createdPostJson)
-      }
-    } catch (err) {
-      // console.log(err)
+
+      console.log(createdPostJson);
+      this.setState({posts: [...this.state.posts, createdPostJson]});
+    } catch(err) {
+      console.log(err)
+
     }
   }
-
+  
   deletePost = async (id, e) => {
     // console.log(id, ' this is id of the post in the delete route');
     e.preventDefault();
@@ -88,17 +88,14 @@ class MainContainer extends Component {
       const deletePost = await fetch('http://localhost:8000/api/posts/' + id + '/', {
         method: 'DELETE',
       });
-      // console.log(deletePost, 'inside try');
 
-      if (deletePost.status === 204) {
-        this.setState({ posts: this.state.posts.filter((post, i) => post.id !== id) });
-      } else {
-        // console.log('no deleting');
-      }
+      console.log(deletePost, 'inside try');
+      this.setState({ posts: this.state.posts.filter((post, i) => post.id !== id) });
     } catch (err) {
-      // console.log(err, ' error')
+      console.log(err, ' error')
+      }
+
     }
-  }
 
 
   showModal = (id, e) => {
@@ -111,11 +108,12 @@ class MainContainer extends Component {
       postToEdit: postToEdit
     });
   }
-  closeAndEdit = async (e) => {
-    e.preventDefault();
+  closeAndEdit = async (postId) => {
+    console.log(this.state.postToEdit, ' this is this.state.postToEdit on closeAndEdit function');
+    console.log(postId)
 
     try {
-      const editResponse = await fetch('http://localhost:8000/api/posts/' + this.state.editPostId + '/', {
+      const editResponse = await fetch('http://localhost:8000/api/posts/' + postId + '/', {
         method: 'PUT',
         body: JSON.stringify(this.state.postToEdit),
         headers: {
@@ -127,20 +125,17 @@ class MainContainer extends Component {
 
       const editedPostArray = this.state.posts.map((post) => {
 
-        if (post.id === this.state.editPostId) {
+        if (post.id === parseInt(postId)) {
 
-
-          post.date = editResponseJson.date;
-          post.title = editResponseJson.title;
-          post.body = editResponseJson.body;
-          post.imgUrl = editResponseJson.img_url;
+          console.log("FOUND THE ONE TO REPLACE")
+          return editResponseJson
         }
 
         return post
       });
 
       this.setState({
-        post: editedPostArray,
+        posts: editedPostArray,
         showEdit: false
       });
 
@@ -281,9 +276,7 @@ class MainContainer extends Component {
         <Switch>
           <Route exact path="/" render={(props) => (
 
-
-
-            <Posts posts={this.state.posts}
+          <Posts posts={this.state.posts}
                    deletePost={this.deletePost}
                    showModal={this.showModal}
                    ////////////passing props for edit POST ///////////
@@ -314,11 +307,7 @@ class MainContainer extends Component {
 
         </Switch>
 
-{/*        {this.state.showEdit ? <EditPost closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} postToEdit={this.state.postToEdit} /> : null}
-        
-        {this.state.showCommentEdit ? <EditComment closeAndEditComment={this.closeAndEditComment} handleCommentFormChange={this.handleCommentFormChange} commentToEdit={this.state.commentToEdit} /> : null}
 
-*/}
       </Aux>
     );
   }
