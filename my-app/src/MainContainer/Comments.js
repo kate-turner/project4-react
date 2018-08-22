@@ -1,6 +1,9 @@
 import React from 'react';
 import EditCommentModal from '../EditCommentModal'
-
+import {
+    Container, Row, Col, Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle, Button, ListGroup, ListGroupItem
+  } from 'reactstrap';
 
 const Comments = (props) => {
     let apiPostID = 'http://localhost:8000/api/posts/' + props.postID + '/';

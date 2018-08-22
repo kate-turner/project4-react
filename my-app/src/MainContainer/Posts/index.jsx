@@ -19,7 +19,7 @@ const Posts = (props) => {
     return (
 
 
-    
+        <Container className="container">
           <Col className="column-posts" sm="6">
               <Card key={post.id}>
 
@@ -55,6 +55,7 @@ const Posts = (props) => {
 
 
         <CreateComment postID={'http://localhost:8000/api/posts/' + post.id + '/'} addComment={props.addComment} />
+    </Container>
     )
   })
       
